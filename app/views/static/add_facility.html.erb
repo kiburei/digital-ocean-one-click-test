@@ -1,2 +1,162 @@
-<h1>Static#add-facility</h1>
-<p>Find me in app/views/static/add-facility.html.erb</p>
+<main class="page-content text-left">
+  <!-- Section Title Breadcrumbs-->
+  <section class="section-full">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Add Facility</h1>
+          <p></p>
+          <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li>Pages</li>
+            <li class="active">Add Facility</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-sm">
+    <div class="container">
+      <h2>Add new conference hall or room</h2>
+      <hr>
+      <div class="row submit-form text-left">
+        <div class="col-sm-6">
+          <!-- RD form-->
+          <form class="inset-6">
+            <div class="form-group">
+              <label for="title" class="small">Conference Facility Title (Not the name of your hotel but specifc room)</label>
+              <input id="title" type="text" name="title" placeholder="No title" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="message" class="small">Property Description</label>
+              <textarea id="message" name="message" placeholder="No Description"></textarea>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="select-1" class="small">Type</label>
+                  <select id="select-1" name="select-1" class="rd-mailform-select form-control">
+                    <option value="Any" selected>Any</option>
+                    <option value="Under Construction">Under Construction</option>
+                    <option value="Ready to Move">Ready to Move</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="select-2" class="small">Property Status</label>
+                  <select id="select-2" name="select-2" class="rd-mailform-select form-control">
+                    <option value="Any" selected>Any</option>
+                    <option value="Vacant land">Vacant land</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Residential">Residential</option>
+                    <option value="conference rooms">conference rooms</option>
+                    <option value="Condos">Condos</option>
+                    <option value="Townhouses">Townhouses</option>
+                    <option value="Foreclosures">Foreclosures</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="select-3" class="small">Location</label>
+                  <select id="select-3" name="select-3" class="rd-mailform-select form-control">
+                    <option value="Any" selected>Any</option>
+                    <option value="Denver">Denver</option>
+                    <option value="Houston">Houston</option>
+                    <option value="Las Vegas">Las Vegas</option>
+                    <option value="Orlando">Orlando</option>
+                    <option value="Phoenix">Phoenix</option>
+                    <option value="San Diego">San Diego</option>
+                    <option value="Miami">Miami</option>
+                    <option value="Atlanta">Atlanta</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="price" class="small">Price</label>
+                  <input id="price" type="text" name="price" placeholder="Any" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="select-4" class="small">Beds</label>
+                  <select id="select-4" name="select-4" class="rd-mailform-select form-control">
+                    <option value="Any" selected>Any</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="select-5" class="small">Baths</label>
+                  <select id="select-5" name="select-5" class="rd-mailform-select form-control">
+                    <option value="Any" selected>Any</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="select-6" class="small">Garages</label>
+                  <select id="select-6" name="select-6" class="rd-mailform-select form-control">
+                    <option value="Any" selected>Any</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="google-search">
+            <div class="form-group">
+              <label for="address" class="small">Address</label>
+              <input id="address" type="search" placeholder="No title" class="form-control input-width-1">
+              <button id="trigger-search" class="btn btn-sm btn-primary btn-primary-transparent btn-max-width-sm">Find Address</button>
+            </div>
+            <!-- RD Google Map-->
+            <div class="rd-google-map rd-google-map-mod-3">
+              <div id="map" class="rd-google-map__model"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 offset-9">
+          <h4>Additional Details</h4>
+          <div class="details-wrap">
+            <div class="form-group input-width-1">
+              <label for="prop-title" class="small">Title</label>
+              <input id="prop-title" type="text" name="title" placeholder="No title" class="form-control">
+            </div>
+            <div class="form-group input-width-2">
+              <label for="description" class="small">Value</label>
+              <input id="description" type="text" name="title" placeholder="No value" class="form-control">
+            </div><span class="icon icon-xxs icon-darker material-icons-close preffix-2 cursor-pointer"></span>
+          </div>
+          <button class="btn btn-sm btn-primary btn-primary-transparent">add details</button>
+        </div>
+        <div class="col-xs-12 offset-8">
+          <button type="submit" class="btn btn-sm btn-primary btn-min-width-md">submit</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

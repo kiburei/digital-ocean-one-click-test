@@ -1,2 +1,47 @@
-<h1>Static#login_page</h1>
-<p>Find me in app/views/static/login_page.html.erb</p>
+<!-- Page Content-->
+<main class="page-content text-center text-sm-left">
+  <!--Section Login-->
+  <section class="section-height-mod-1 bg-image bg-image-1 section-middle">
+    <div class="container z-index">
+      <div class="row offset-2">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-offset-0 col-lg-4">
+          <div class="jumbotron jumbotron-mod-1 text-center text-md-left">
+            <h1>Login
+              <!-- Rd Mailform result field-->
+            </h1>
+            <div class="rd-mailform-validate"></div>
+            <!-- RD Mailform-->
+            <form data-result-class="rd-mailform-validate" data-form-type="contact" method="post" action="bat/rd-mailform.php" class="rd-mailform rd-mailform-mod-1">
+              <input type="text" name="name" data-constraints="@NotEmpty" placeholder="Username or e-mail">
+              <input type="password" name="password" data-constraints="@NotEmpty" placeholder="Password">
+              <button class="btn btn-primary btn-md">Sign in</button>
+            </form>
+            <p>Or enter with</p>
+            <div class="btn-group-mod-2"><a href="#" class="btn btn-sm btn-info"><span class="fa-facebook"></span></a><a href="#" class="btn btn-sm btn-info-2"><span class="fa-twitter"></span></a><a href="#" class="btn btn-sm btn-danger"><span class="fa-google-plus"></span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<!-- InstanceEndEditable --><!-- Page Footer-->
+<footer class="page-foot text-center text-md-left bg-gray">
+  <div class="container-fluid">
+    <div class="footer-wrap">
+      <div class="rd-navbar-brand"><a href="index.html" class="brand-name">Meet in<br><span>Africa</span></a></div>
+      <ul class="list-inline">
+        <li><a href="#" class="fa-facebook"></a></li>
+        <li><a href="#" class="fa-twitter"></a></li>
+        <li><a href="#" class="fa-pinterest-p"></a></li>
+        <li><a href="#" class="fa-vimeo"></a></li>
+        <li><a href="#" class="fa-google"></a></li>
+        <li><a href="#" class="fa-rss"></a></li>
+      </ul>
+      <div class="copyright">
+        <p>&#169;<span id="copyright-year"></span> All Rights Reserved <a href="terms.html">Terms of Use and Privacy Policy</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
