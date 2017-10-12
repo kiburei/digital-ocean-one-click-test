@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :facilities
   devise_for :hotels, :controllers => { registrations: 'registrations' }
   devise_for :installs
 
