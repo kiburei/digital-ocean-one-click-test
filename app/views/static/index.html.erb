@@ -37,7 +37,7 @@
             <!-- RD Navbar Brand-->
             <div class="rd-navbar-brand"><a href="index.html" class="brand-name"><%= image_tag 'meet-in-africa-logo.png', size: "200x50", alt: 'Meet In Africa Logo' %></a></div>
           </div>
-          <div class="btn-group"><%= link_to "Add Facility", static_add_facility_path, class: "btn btn-sm btn-primary" %></div>
+          <div class="btn-group"><%= link_to "Add Facility", new_facility_path(current_hotel), class: "btn btn-sm btn-primary" %></div>
           <div class="rd-navbar-nav-wrap">
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
@@ -88,9 +88,9 @@
             <div data-slide-bg="http://wamiori.com/meet/images/slide-1.jpg" class="swiper-slide">
               <div class="swiper-slide-caption">
                 <div class="container">
-                  <p data-caption-animate="fadeInDown" class="h1"><%= hotel.name %> - Kiboko Hall</p>
-                  <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">This is a conference facility located in Nairobi CBD<br>
-                    along Valley Road that can accomodate up to 50 people.</p>
+                  <% facility = Facility.find(hotel.facilities.ids.sample) %>
+                  <p data-caption-animate="fadeInDown" class="h1"><%= hotel.name %> - <%=   facility.name  %></p>
+                  <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5" style="padding-right: 500px;"><%= facility.description %></p>
                   <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>
                   <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
               </div>

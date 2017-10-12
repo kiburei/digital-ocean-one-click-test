@@ -1,8 +1,48 @@
+<% if hotel_signed_in? %>
+    <%= link_to 'New Facility', new_facility_path %> ||
+    <%= link_to "Edit Hotel", edit_hotel_registration_path %> ||
+    <%= link_to "Logout", destroy_hotel_session_path,method: :delete%>
+<% else %>
+    <%= link_to "Login", hotel_session_path %> ||
+    <%= link_to "Registration", new_hotel_registration_path %>
+<% end %>
 <p id="notice"><%= notice %></p>
 
 <h1>Facilities</h1>
-
 <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Facility type</th>
+      <th>Hotel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @facilities.each do |facility| %>
+      <tr>
+        <td><%= facility.name %></td>
+        <td><%= facility.facility_type %></td>
+        <td><%= facility.hotel.name %></td>
+        <td><%= link_to 'Show', facility %></td>
+        <% if facility.hotel = current_hotel %>
+          <td><%= link_to 'Edit', edit_facility_path(facility) %></td>
+          <td><%= link_to 'Destroy', facility, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h3>Categories</h3>
+ <% Facility.uniq.pluck(:facility_type).each do |category| %>
+  <li><%= link_to category, category_path(category) %></li>
+ <% end %>
+
+ <h3>Recent Submissions</h3>
+ <table>
   <thead>
     <tr>
       <th>Name</th>
@@ -12,7 +52,7 @@
   </thead>
 
   <tbody>
-    <% @facilities.each do |facility| %>
+    <% @recent.each do |facility| %>
       <tr>
         <td><%= facility.name %></td>
         <td><%= facility.facility_type %></td>
@@ -23,7 +63,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Facility', new_facility_path %>

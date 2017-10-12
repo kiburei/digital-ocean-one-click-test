@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :facilities
   devise_for :hotels, :controllers => { registrations: 'registrations' }
   devise_for :installs
+  resources :facilities
 
+  get "category", to: "facilities#category"
 
-  root 'static#index'
+  root 'facilities#index'
+
+  get 'static/index'
 
   get 'static/categories'
 
