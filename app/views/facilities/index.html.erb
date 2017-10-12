@@ -1,11 +1,4 @@
-<% if hotel_signed_in? %>
-    <%= link_to 'New Facility', new_facility_path %> ||
-    <%= link_to "Edit Hotel", edit_hotel_registration_path %> ||
-    <%= link_to "Logout", destroy_hotel_session_path,method: :delete%>
-<% else %>
-    <%= link_to "Login", hotel_session_path %> ||
-    <%= link_to "Registration", new_hotel_registration_path %>
-<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Facilities</h1>
