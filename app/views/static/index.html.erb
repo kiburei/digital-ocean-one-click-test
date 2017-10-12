@@ -8,7 +8,12 @@
         <!--RD Navbar Panel-->
         <div class="rd-navbar-top-panel">
           <div class="rd-navbar-top-panel-wrap">
-            <div class="login"><%= link_to "Login", hotel_session_path, class: "fa-user" %></div>/
+            <% if hotel_signed_in? %>
+                <%= link_to "Edit Hotel", edit_hotel_registration_path %>/
+                <div class="login"><%= link_to "Logout", destroy_hotel_session_path,method: :delete, class: "fa-user" %></div>/
+            <% else %>
+                <div class="login"><%= link_to "Login", hotel_session_path, class: "fa-user" %></div>/
+            <% end %>
             <div class="login"><%= link_to "Registration", new_hotel_registration_path, class: "fa-user" %></div>
             <div class="contact-info"><a href="callto:#"><span class="material-icons-local_phone"></span> +254-723-858-383</a><a href="mailto:info@meetinafrica.com"><span class="material-icons-drafts"></span> info@meetinafrica.com</a></div>
             <div class="slogan">
@@ -79,36 +84,19 @@
     <!--Swiper-->
     <div data-height="" data-min-height="600px" class="swiper-container swiper-slider">
       <div class="swiper-wrapper">
-        <div data-slide-bg="http://wamiori.com/meet/images/slide-1.jpg" class="swiper-slide">
-          <div class="swiper-slide-caption">
-            <div class="container">
-              <p data-caption-animate="fadeInDown" class="h1">Sarova Panafric - Kiboko Hall</p>
-              <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">This is a conference facility located in Nairobi CBD<br>
-                along Valley Road that can accomodate up to 50 people.</p>
-              <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>
-              <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
-          </div>
-        </div>
-        <div data-slide-bg="http://wamiori.com/meet/images/slide-2.jpg" class="swiper-slide">
-          <div class="swiper-slide-caption">
-            <div class="container">
-              <p data-caption-animate="fadeInDown" class="h1">Voyager Beach Hotel - Conference A</p>
-              <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">If you are looking to have a conference facilty<br>
-                with a view of the beach then look no further. Capacity of Up to 200 people.</p>
-              <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$216.00<span>/day</span></div>
-              <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
-          </div>
-        </div>
-        <div data-slide-bg="http://wamiori.com/meet/images/slide-3.jpg" class="swiper-slide">
-          <div class="swiper-slide-caption">
-            <div class="container">
-              <p data-caption-animate="fadeInDown" class="h1">Dusit Hotel - Conference Hall B</p>
-              <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">Class always speaks for itself and leaves you with a wonderful<br>
-                experience after the conference. Welcome!</p>
-              <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$239.00<span>/day</span></div>
-              <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
-          </div>
-        </div>
+        <% @hotels.each do |hotel| %>
+            <div data-slide-bg="http://wamiori.com/meet/images/slide-1.jpg" class="swiper-slide">
+              <div class="swiper-slide-caption">
+                <div class="container">
+                  <p data-caption-animate="fadeInDown" class="h1"><%= hotel.name %> - Kiboko Hall</p>
+                  <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">This is a conference facility located in Nairobi CBD<br>
+                    along Valley Road that can accomodate up to 50 people.</p>
+                  <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>
+                  <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
+              </div>
+            </div>
+        <% end %>
+
       </div>
       <!-- Swiper Pagination-->
       <div class="swiper-pagination"></div>
