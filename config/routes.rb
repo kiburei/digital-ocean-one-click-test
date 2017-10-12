@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :hotels
+  devise_for :hotels, :controllers => { registrations: 'registrations' }
   devise_for :installs
 
 
