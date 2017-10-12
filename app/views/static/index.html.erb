@@ -8,7 +8,8 @@
         <!--RD Navbar Panel-->
         <div class="rd-navbar-top-panel">
           <div class="rd-navbar-top-panel-wrap">
-            <div class="login"><a href="register.html"><span class="fa-user"></span> Login/Registration</a></div>
+            <div class="login"><%= link_to "Login", static_register_page_path, class: "fa-user" %></div>/
+            <div class="login"><%= link_to "Registration", static_register_page_path, class: "fa-user" %></div>
             <div class="contact-info"><a href="callto:#"><span class="material-icons-local_phone"></span> +254-723-858-383</a><a href="mailto:info@meetinafrica.com"><span class="material-icons-drafts"></span> info@meetinafrica.com</a></div>
             <div class="slogan">
               <p>Professional realtor works for you</p>
@@ -31,7 +32,7 @@
             <!-- RD Navbar Brand-->
             <div class="rd-navbar-brand"><a href="index.html" class="brand-name"><%= image_tag 'meet-in-africa-logo.png', size: "200x50", alt: 'Meet In Africa Logo' %></a></div>
           </div>
-          <div class="btn-group"><a href="add-facility.html" class="btn btn-sm btn-primary">Add Facility</a></div>
+          <div class="btn-group"><%= link_to "Add Facility", static_add_facility_path, class: "btn btn-sm btn-primary" %></div>
           <div class="rd-navbar-nav-wrap">
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
@@ -249,14 +250,14 @@
               <div class="category-content">
                 <h4>Cocktail</h4>
                 <p>101 Results</p>
-                <a href="property-catalog-single.html" class="btn btn-sm btn-primary">More details</a> </div>
+                <%= link_to "More details", static_single_facility_path, class: "btn btn-sm btn-primary" %> </div>
             </div>
             <div class="category">
               <%= image_tag 'index-2.jpg', size: "370x250" %>
               <div class="category-content">
                 <h4>Classroom</h4>
                 <p>101 Results</p>
-                <a href="property-catalog-single.html" class="btn btn-sm btn-primary">More details</a> </div>
+                <%= link_to "More details", static_single_facility_path, class: "btn btn-sm btn-primary" %> </div>
             </div>
           </div>
           <div class="cell-sm-6 cell-md-4 cell-md-push-3">
