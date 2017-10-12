@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :hotels
   devise_for :installs
+
+
   get 'static/index'
 
   get 'static/categories'
