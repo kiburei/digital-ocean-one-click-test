@@ -1,34 +1,27 @@
 
 <p id="notice"><%= notice %></p>
+<section>
+  <!--Swiper-->
+  <div data-height="" data-min-height="600px" class="swiper-container swiper-slider">
+    <div class="swiper-wrapper">
+      <% @facilities.each do |facility| %>
+          <div data-slide-bg="http://wamiori.com/meet/images/slide-1.jpg" class="swiper-slide">
+            <div class="swiper-slide-caption">
+              <div class="container">
+                <p data-caption-animate="fadeInDown" class="h1"><%= facility.hotel.name %> - <%=   facility.name  %></p>
+                <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5" style="padding-right: 500px;"><%= facility.description %></p>
+                <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>
+                <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
+            </div>
+          </div>
+      <% end %>
 
-<h1>Facilities</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Facility type</th>
-      <th>Hotel</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    </div>
+    <!-- Swiper Pagination-->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
 
-  <tbody>
-    <% @facilities.each do |facility| %>
-      <tr>
-        <td><%= facility.name %></td>
-        <td><%= facility.facility_layouts %></td>
-        <td><%= facility.hotel.name %></td>
-        <td><%= link_to 'Show', facility %></td>
-        <% if facility.hotel == current_hotel %>
-          <td><%= link_to 'Edit', edit_facility_path(facility) %></td>
-          <td><%= link_to 'Destroy', facility, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 <h3>Facility Type</h3>
 <% @facility_layouts.each do |orientation| %>
   <li><%= link_to orientation, category_path(orientation) %></li>

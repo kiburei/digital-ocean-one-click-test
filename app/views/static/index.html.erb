@@ -88,7 +88,7 @@
             <div data-slide-bg="http://wamiori.com/meet/images/slide-1.jpg" class="swiper-slide">
               <div class="swiper-slide-caption">
                 <div class="container">
-                  <% facility = Facility.find(hotel.facilities.ids.sample) %>
+                  <% facility = Facility.last %>
                   <p data-caption-animate="fadeInDown" class="h1"><%= hotel.name %> - <%=   facility.name  %></p>
                   <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5" style="padding-right: 500px;"><%= facility.description %></p>
                   <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>

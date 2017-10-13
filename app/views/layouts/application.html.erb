@@ -28,15 +28,59 @@
     <![endif]-->
 
   </head>
-    <%= link_to "Meet in Africa", root_path %> ||
-    <% if hotel_signed_in? %>
-        <%= link_to "Dashboard", edit_hotel_registration_path %> ||
-        <%= link_to 'New Facility', new_facility_path %> ||
-        <%= link_to "Logout", destroy_hotel_session_path,method: :delete%>
-    <% else %>
-        <%= link_to "Login", hotel_session_path %> ||
-        <%= link_to "Registration", new_hotel_registration_path %>
-    <% end %>
+    <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fullwidth" data-md-layout="rd-navbar-fullwidth" data-lg-layout="rd-navbar-fullwidth" data-device-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fullwidth" data-stick-up-offset="100px">
+      <!--RD Navbar Panel-->
+      <div class="rd-navbar-inner inner-wrap">
+        <div class="rd-navbar-panel">
+          <!-- RD Navbar Toggle-->
+          <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
+          <!-- RD Navbar Brand-->
+          <div class="rd-navbar-brand"><a href="index.html" class="brand-name"><%= image_tag 'meet-in-africa-logo.png', size: "200x50", alt: 'Meet In Africa Logo' %></a></div>
+        </div>
+        <div class="btn-group"><%= link_to "Add Facility", new_facility_path(current_hotel), class: "btn btn-sm btn-primary" %></div>
+        <div class="rd-navbar-nav-wrap">
+          <!-- RD Navbar Nav-->
+          <ul class="rd-navbar-nav">
+            <li><%= link_to "Home", root_path, class: "active" %></li>
+
+            <li><a href="#">Facility</a>
+              <ul class="rd-navbar-dropdown">
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="property-catalog-list.html">Facility catalog list</a></li>
+                <li><a href="property-catalog-single.html">View Single Facility</a></li>
+                <li><a href="add-facility.html">Add Facility</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#">User/Owner</a>
+              <ul class="rd-navbar-dropdown">
+                <% if hotel_signed_in? %>
+                  <li><%= link_to "Logout", destroy_hotel_session_path,method: :delete%></li>
+                <% else %>
+                  <li><%= link_to "Login", hotel_session_path %></li>
+                  <li><%= link_to "Registration", new_hotel_registration_path %></li>
+                <% end %>
+                <li><%= link_to "Dashboard", edit_hotel_registration_path %></li>
+              </ul>
+            </li>
+
+
+            <li><a href="contact_us.html">Contact Us</a></li>
+
+            <!-- To Go to Footer Menu-->
+            <li><a href="#">Footer Menu</a>
+              <ul class="rd-navbar-dropdown">
+                <li><a href="about.html">About</a></li>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li><a href="terms.html">Terms of Use</a></li>
+              </ul>
+            </li>
+
+            <li class="link-group"><a href="callto:#"><span class="icon icon-xxs-mod-1 material-icons-local_phone"></span> +254-723-858-383</a><a href="mailto:#"><span class="icon icon-xxs-mod-1 material-icons-drafts"></span> info@meetinafrica.com</a><a href="register.html"><span class="icon icon-xxs-mod-1 fa-user"></span> Login/Registration</a><a href="add-facility.html" class="btn btn-sm btn-primary">Add Conference Facility</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   <body>
     <%= yield %>
     <%= javascript_include_tag 'script', 'data-turbolinks-track': 'reload', :recursive => true  %>
