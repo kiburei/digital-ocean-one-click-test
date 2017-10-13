@@ -10,7 +10,7 @@ class FacilitiesController < ApplicationController
   end
 
   def category
-    @facilities = Facility.where("facility_type =?", params[:format] )
+    @facilities = Facility.where("facility_layouts =?", params[:format] )
   end
 
   # GET /facilities/1
@@ -21,24 +21,27 @@ class FacilitiesController < ApplicationController
   # GET /facilities/new
   def new
     @facility = Facility.new
-    @facility_type = ["Conference Hall", "Boardroom", "Cocktail", "Banquet", "Classroom", "U-Shape", "Theatre"]
+    @facility_layouts = ['Classroom', 'Banquet', 'Reception', 'Theatre', 'Boardroom']
   end
 
   # GET /facilities/1/edit
   def edit
     if @facility.hotel == current_hotel
       # allow edit
-      @facility_type = ["Conference Hall", "Boardroom", "Cocktail", "Banquet", "Classroom", "U-Shape", "Theatre"]  
+      @facility_layouts = @facility.facility_layouts.split(" ")
     else
       redirect_to @facility, notice: 'Sorry, only the owner can edit this facility :('
     end
-    
+
   end
 
   # POST /facilities
   # POST /facilities.json
   def create
     @facility = Facility.new(facility_params)
+    # byebug
+    @facility.facility_layouts = facility_params[:facility_layouts].join(" ")
+    @facility.capacity = facility_params[:capacity].join(" ")
 
     respond_to do |format|
       if @facility.save
@@ -87,6 +90,6 @@ class FacilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def facility_params
-      params.require(:facility).permit(:name, :facility_type, :hotel_id)
+      params.require(:facility).permit(:name, :hotel_id, :capacity => [], :facility_layouts => [])
     end
 end

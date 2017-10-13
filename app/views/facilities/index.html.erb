@@ -16,10 +16,10 @@
     <% @facilities.each do |facility| %>
       <tr>
         <td><%= facility.name %></td>
-        <td><%= facility.facility_type %></td>
+        <td><%= facility.facility_layouts %></td>
         <td><%= facility.hotel.name %></td>
         <td><%= link_to 'Show', facility %></td>
-        <% if facility.hotel = current_hotel %>
+        <% if facility.hotel == current_hotel %>
           <td><%= link_to 'Edit', edit_facility_path(facility) %></td>
           <td><%= link_to 'Destroy', facility, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -30,9 +30,6 @@
 
 <br>
 <h3>Categories</h3>
- <% Facility.uniq.pluck(:facility_type).each do |category| %>
-  <li><%= link_to category, category_path(category) %></li>
- <% end %>
 
  <h3>Recent Submissions</h3>
  <table>
@@ -48,7 +45,7 @@
     <% @recent.each do |facility| %>
       <tr>
         <td><%= facility.name %></td>
-        <td><%= facility.facility_type %></td>
+        <td><%= facility.facility_layouts %></td>
         <td><%= link_to 'Show', facility %></td>
         <td><%= link_to 'Edit', edit_facility_path(facility) %></td>
         <td><%= link_to 'Destroy', facility, method: :delete, data: { confirm: 'Are you sure?' } %></td>

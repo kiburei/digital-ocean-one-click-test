@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012135539) do
+ActiveRecord::Schema.define(version: 20171013083950) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
-    t.string   "facility_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "facility_layouts"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "hotel_id"
     t.string   "description"
+    t.string   "capacity"
     t.index ["hotel_id"], name: "index_facilities_on_hotel_id"
   end
 

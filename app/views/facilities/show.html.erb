@@ -7,7 +7,11 @@
 
 <p>
   <strong>Facility type:</strong>
-  <%= @facility.facility_type %>
+  <% i = 0 %>
+  <% @facility.facility_layouts.split(" ").each do |arrangement| %>
+    <li><%= arrangement %> with a capacity of: <%= @facility.capacity.split(" ")[i] %>
+    <% i += 1 %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_facility_path(@facility) %> |
