@@ -20,6 +20,10 @@
   </div>
 
   <div class="field">
+    <%= f.number_field :price, placeholder: "Enter Price" %>
+  </div>
+
+  <div class="field">
     <% @facility_layouts.each do |facility_layout| %>
       <%= f.check_box :facility_layouts, { multiple: true }, facility_layout, false %>
       <%= f.number_field :capacity, { multiple: true } %>

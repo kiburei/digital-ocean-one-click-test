@@ -10,7 +10,7 @@
               <div class="container">
                 <p data-caption-animate="fadeInDown" class="h1"><%= facility.hotel.name %> - <%=   facility.name  %></p>
                 <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5" style="padding-right: 500px;"><%= facility.description %></p>
-                <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>
+                <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price"><%= number_to_currency(facility.price, :unit => "Kes") %><span>/day</span></div>
                 <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
             </div>
           </div>
