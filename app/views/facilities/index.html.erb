@@ -29,7 +29,11 @@
 </table>
 
 <br>
-<h3>Categories</h3>
+<h3>Facility Type</h3>
+<% @facility_layouts.each do |orientation| %>
+  <li><%= link_to orientation, category_path(orientation) %></li>
+<% end %>
+
 
  <h3>Recent Submissions</h3>
  <table>

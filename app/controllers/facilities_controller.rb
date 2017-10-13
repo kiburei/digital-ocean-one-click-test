@@ -5,12 +5,20 @@ class FacilitiesController < ApplicationController
   # GET /facilities.json
   def index
     @facilities = Facility.all
+    @facility_layouts = ['Classroom', 'Banquet', 'Reception', 'Theatre', 'Boardroom']
     # Last x facilities to be added
     @recent = Facility.last(2).reverse
   end
 
   def category
-    @facilities = Facility.where("facility_layouts =?", params[:format] )
+    @facilities = Facility.all
+    @orientation = []
+    @facilities.each do |facility|
+      if facility.facility_layouts.include? params[:format]
+        @orientation.push(facility)
+      end
+      @orientation
+    end
   end
 
   # GET /facilities/1
