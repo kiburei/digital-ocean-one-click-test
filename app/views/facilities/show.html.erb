@@ -1,5 +1,208 @@
 <p id="notice"><%= notice %></p>
 
+<section class="section-sm section-sm-mod-2">
+  <div class="container">
+    <h2><%= @facility.name %>, <%= @facility.hotel.name %>, <%= @facility.hotel.city %></h2>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <div data-lightbox="gallery" class="product-carousel">
+          <!-- Slick Carousel-->
+          <div class="carousel-slider slider">
+            <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
+            <div class="item"><a href="images/catalog_single-2_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
+            <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
+            <div class="item"><a href="images/catalog_single-2_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
+            <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
+            <div class="item"><a href="images/catalog_single-2_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
+
+          </div>
+          <div class="carousel-thumbnail slider">
+            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
+            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
+            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
+            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
+            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
+            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <h4>Description</h4>
+            <p><%= @facility.description %></p>
+            <div class="table-responsive">
+              <table class="table">
+                <colgroup>
+                  <col class="col-xs-3">
+                  <col class="col-xs-3">
+                </colgroup>
+                <thead>
+                <tr class="bg-gray">
+                  <th colspan="2">Conference Facility Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Hotel</td>
+                  <td>The Grand Regancy Hotel</td>
+                </tr>
+                <tr>
+                  <td>Location</td>
+                  <td>Nairobi CBD</td>
+                </tr>
+                <tr>
+                  <td>Internet</td>
+                  <td>WiFi and Cable</td>
+                </tr>
+                <tr>
+                  <td>Parking</td>
+                  <td>Available</td>
+                </tr>
+                <tr>
+                  <td>Accomodation Available</td>
+                  <td>Boston Glen (925) 862-2026</td>
+                </tr>
+                <tr>
+                  <td>Swimming Pool</td>
+                  <td>2 Available</td>
+                </tr>
+                <tr>
+                  <td>Public Adress System</td>
+                  <td>Avaialble</td>
+                </tr>
+                <tr>
+                  <td>Bar</td>
+                  <td>Avaialbe for certain hrs</td>
+                </tr>
+                <tr>
+                  <td>Conference Stationery</td>
+                  <td>Available</td>
+                </tr>
+                <tr>
+                  <td>Lawn</td>
+                  <td>Available</td>
+                </tr>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <colgroup>
+                  <col class="col-xs-4">
+                  <col class="col-xs-2">
+                  <col class="col-xs-2">
+                </colgroup>
+                <thead>
+                <tr class="bg-gray">
+                  <th colspan="3">Conference Facility Capacity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>U Style</td>
+                  <td>Min 100</td>
+                  <td>Max 150</td>
+                </tr>
+                <tr>
+                  <td>Classroom</td>
+                  <td>Min 100</td>
+                  <td>Max 150</td>
+                </tr>
+                <tr>
+                  <td>Theatre</td>
+                  <td>Min 100</td>
+                  <td>Max 150</td>
+                </tr>
+                <tr>
+                  <td>Lawn</td>
+                  <td>Min 100</td>
+                  <td>Max 150</td>
+                </tr>
+                <tr>
+                  <td>Board Room</td>
+                  <td>Min 100</td>
+                  <td>Max 150</td>
+                </tr>
+                <tr>
+                  <td>Round Table</td>
+                  <td>Min 100</td>
+                  <td>Max 150</td>
+                </tr>
+                <tr>
+                  <td>Cocktail</td>
+                  <td>Min 100</td>
+                  <td>Max 150</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="catalog-sidebar range">
+          <div class="sidebar-module cell-sm-12 text-left col-md-push-0">
+            <ul class="list-unstyled small">
+              <li><span class="text-darker">Created:</span>
+                <time datetime="2015"><%= @facility.created_at %></time>
+              </li>
+              <li><span class="text-darker">Updated:</span>
+                <time datetime="2015"><%= @facility.updated_at %></time>
+              </li>
+            </ul>
+          </div>
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-2">
+            <% i = 0 %>
+              <% @facility.facility_layouts.split(" ").length.times do |orientation| %>
+                <div class="col-md-6" style="font-size: 15px;">
+                  <span class="icon icon-sm icon-darker hotel-icon-10"></span><%= @facility.facility_layouts.split(" ")[i] %> - <%= @facility.capacity.split(" ")[i] %>
+                </div>
+                <% i += 1 %>
+              <% end %>
+          </div>
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-3">
+            <div class="price">
+              <p class="small">Price</p>
+              <p><span class="h4"><%= number_to_currency(@facility.price - (@facility.price * 0.09) , :unit => "kes") %>/day</span><span class="h6 text-darker">
+                    <del><%= number_to_currency(@facility.price , :unit => "kes") %>/day</del>
+                </span>
+                </p>
+              <div class="btn-group-isotope"><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">Facility Owner</a><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">more information</a></div>
+            </div>
+          </div>
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-6">
+            <h4>View Owner's Profile</h4>
+            <!-- Rd Mailform result field-->
+            <div class="rd-mailform-validate"></div>
+            <!-- RD Mailform-->
+            <form data-result-class="rd-mailform-validate" data-form-type="contact" method="post" action="bat/rd-mailform.php" class="rd-mailform">
+              <input type="text" name="name" data-constraints="@NotEmpty" placeholder="Your First Name">
+              <input type="text" name="name-2" data-constraints="@NotEmpty" placeholder="Your Last Name">
+              <input type="text" name="phone" data-constraints="@Phone" placeholder="Your phone">
+              <input type="text" name="email" data-constraints="@NotEmpty @Email" placeholder="Your e-mail">
+              <textarea name="message" data-constraints="@NotEmpty" placeholder="I`m interested in 7758 Laguna Heights Court, Boston, MA 02127. Please contact me with more information!"></textarea>
+              <button class="btn btn-primary btn-md">send message</button>
+            </form>
+          </div>
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-7">
+            <h4>Facility Owner</h4>
+            <div class="media media-mod-3">
+              <div class="media-left round img-width-auto"><img src="images/hotel-logo-hilton-hotel.jpg" alt="" width="100" height="100" class="round"></div>
+              <div class="media-body">
+                <h6 class="text-primary">Hilton Hotel</h6>
+                <p class="small text-darker">Hilton Int.</p><a href="callto:#" class="text-bold">+254-723-858-383</a>
+              </div>
+            </div>
+            <p>Located in Nairobi's CBD the facilities are convinient</p><a href="agent-personal.html" class="btn btn-primary btn-primary-transparent btn-sm">View Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <p>
   <strong>Name:</strong>
   <%= @facility.name %>
