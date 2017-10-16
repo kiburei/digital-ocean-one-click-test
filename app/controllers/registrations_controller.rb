@@ -1,7 +1,17 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :set_hotel, only: [:show]
-  def show
 
+  def show
+    @facilities = @hotel.facilities
+    @max = 0
+    @facilities.each do |facility|
+      facility.capacity.split(" ").each do |cap|
+        if cap.to_i > @max
+          @max = cap.to_i
+        end
+      end
+      @max
+    end
   end
 
   private

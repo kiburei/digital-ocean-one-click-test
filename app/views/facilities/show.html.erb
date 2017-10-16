@@ -2,7 +2,7 @@
 
 <section class="section-sm section-sm-mod-2">
   <div class="container">
-    <h2><%= @facility.name %>, <%= @facility.hotel.name %>, <%= @facility.hotel.city %></h2>
+    <h2><%= @facility.name %>, <%= link_to @facility.hotel.name, hotel_path(@facility.hotel) %>, <%= @facility.hotel.city %></h2>
     <hr>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8">
@@ -19,11 +19,12 @@
             <div class="carousel-thumbnail slider">
               <% @facility.photos.each do |photo| %>
                 <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag photo.image.url, size: "370x250" %></a></div>
-                <%= link_to "add facility photos", new_photo_path(@facility) %>
+
               <% end %>
             </div>
           </div>
         <% end %>
+        <%= link_to "add facility photos", new_photo_path(@facility) %>
         <div class="row">
           <div class="col-xs-12">
             <h4>Description</h4>

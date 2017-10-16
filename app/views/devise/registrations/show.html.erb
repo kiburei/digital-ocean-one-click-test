@@ -1,3 +1,98 @@
 <h2><%= @hotel.name %></h2>
 <p><%= @hotel.description %></p>
 <p>Meeting rooms: <%= @hotel.facilities.count %></p>
+<h6>Capacity Range</h6>
+<p>Up to <%= @max %> </p>
+<h6>Location</h6>
+<%= @hotel.city %>,<%= @hotel.county %>, <%= @hotel.country %>
+
+<table class="table">
+  <th>
+    <tr>
+      <td><h6>Meeting Rooms</h6></td>
+      <td>m2</td>
+      <td>LxWxH </br> [m]</td>
+      <td>U-Shape</td>
+      <td>Classroom</td>
+      <td>Theatre</td>
+      <td>Round Table</td>
+      <td>Board Room</td>
+      <td>Cocktail</td>
+    </tr>
+  </th>
+  <tbody>
+    <% @facilities.each do |facility| %>
+    <tr>
+      <td><%= facility.name %></td>
+      <td></td>
+      <td></td>
+        <td>
+          <% if facility.facility_layouts.include? "U-Shape" %>
+          <% facility.facility_layouts.split(" ").length.times do |i| %>
+            <% if facility.facility_layouts.split(" ")[i] == "U-Shape" %>
+              <%= facility.capacity.split(" ")[i] %>
+            <% end %>
+          <% end %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td>
+          <% if facility.facility_layouts.include? "Classroom" %>
+          <% facility.facility_layouts.split(" ").length.times do |i| %>
+            <% if facility.facility_layouts.split(" ")[i] == "Classroom" %>
+              <%= facility.capacity.split(" ")[i] %>
+            <% end %>
+          <% end %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td>
+          <% if facility.facility_layouts.include? "Theatre" %>
+            <% facility.facility_layouts.split(" ").length.times do |i| %>
+              <% if facility.facility_layouts.split(" ")[i] == "Theatre" %>
+                <%= facility.capacity.split(" ")[i] %>
+              <% end %>
+            <% end %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td>
+          <% if facility.facility_layouts.include? "Round Table" %>
+          <% facility.facility_layouts.split(" ").length.times do |i| %>
+            <% if facility.facility_layouts.split(" ")[i] == "Round Table" %>
+              <%= facility.capacity.split(" ")[i] %>
+            <% end %>
+          <% end %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td>
+          <% if facility.facility_layouts.include? "Board Room" %>
+          <% facility.facility_layouts.split(" ").length.times do |i| %>
+            <% if facility.facility_layouts.split(" ")[i] == "Boardroom" %>
+              <%= facility.capacity.split(" ")[i] %>
+            <% end %>
+          <% end %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td>
+          <% if facility.facility_layouts.include? "Cocktail" %>
+          <% facility.facility_layouts.split(" ").length.times do |i| %>
+            <% if facility.facility_layouts.split(" ")[i] == "Cocktail" %>
+              <%= facility.capacity.split(" ")[i] %>
+            <% end %>
+          <% end %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+    </tr>
+    <% end %>
+   </tbody>
+</table>

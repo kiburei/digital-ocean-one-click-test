@@ -7,7 +7,7 @@ class FacilitiesController < ApplicationController
     @facilities = Facility.all
     @facility_layouts = ['U Style', 'Classroom', 'Theatre', 'Lawn', 'Board Room', 'Round Table', 'Cocktail']
     # Last x facilities to be added
-    @recent = Facility.last(2).reverse
+    @recent = Facility.last(6).reverse
   end
 
   def category
