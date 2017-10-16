@@ -6,27 +6,23 @@
     <hr>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8">
-        <div data-lightbox="gallery" class="product-carousel">
-          <!-- Slick Carousel-->
-          <div class="carousel-slider slider">
-            <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
-            <div class="item"><a href="images/catalog_single-2_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
-            <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
-            <div class="item"><a href="images/catalog_single-2_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
-            <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
-            <div class="item"><a href="images/catalog_single-2_original.jpg" data-lightbox="image"><%= image_tag 'index-1.jpg', size: "370x250" %></a></div>
+        <% if @facility.photos.any? %>
+          <div data-lightbox="gallery" class="product-carousel">
+            <!-- Slick Carousel-->
+            <div class="carousel-slider slider">
+              <% @facility.photos.each do |photo| %>
+                <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag photo.image.url, size: "370x250" %></a></div>
+              <% end %>
 
-          </div>
-          <div class="carousel-thumbnail slider">
-            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
-            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
-            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
-            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
-            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
-            <div class="item"><%= image_tag 'index-1.jpg', size: "370x250" %></div>
-          </div>
-        </div>
 
+            </div>
+            <div class="carousel-thumbnail slider">
+              <% @facility.photos.each do |photo| %>
+                <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag photo.image.url, size: "370x250" %></a></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
         <div class="row">
           <div class="col-xs-12">
             <h4>Description</h4>
@@ -169,7 +165,7 @@
                     <del><%= number_to_currency(@facility.price , :unit => "kes") %>/day</del>
                 </span>
                 </p>
-              <div class="btn-group-isotope"><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">Facility Owner</a><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">more information</a></div>
+              <div class="btn-group-isotope"><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">Facility Owner</a><%= link_to "add facility photos", new_photo_path(@facility), class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
             </div>
           </div>
           <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-6">

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :hotels, :controllers => { registrations: 'registrations' }
   devise_for :installs
   resources :facilities
+  resources :photos
 
   get "category", to: "facilities#category"
 
