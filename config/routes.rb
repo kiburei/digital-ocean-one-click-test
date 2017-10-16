@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :facilities
   resources :photos
 
+  devise_scope :hotel do
+    get "show/:id" => "registrations#show", as: :hotel
+  end
+
   get "category", to: "facilities#category"
+
 
   root 'facilities#index'
 

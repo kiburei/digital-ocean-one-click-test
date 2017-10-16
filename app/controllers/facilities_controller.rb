@@ -5,7 +5,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities.json
   def index
     @facilities = Facility.all
-    @facility_layouts = ['Classroom', 'Banquet', 'Reception', 'Theatre', 'Boardroom']
+    @facility_layouts = ['U Style', 'Classroom', 'Theatre', 'Lawn', 'Board Room', 'Round Table', 'Cocktail']
     # Last x facilities to be added
     @recent = Facility.last(2).reverse
   end
@@ -29,7 +29,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities/new
   def new
     @facility = Facility.new
-    @facility_layouts = ['Classroom', 'Banquet', 'Reception', 'Theatre', 'Boardroom']
+    @facility_layouts = ['U Style', 'Classroom', 'Theatre', 'Lawn', 'Board Room', 'Round Table', 'Cocktail']
   end
 
   # GET /facilities/1/edit

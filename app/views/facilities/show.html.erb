@@ -19,6 +19,7 @@
             <div class="carousel-thumbnail slider">
               <% @facility.photos.each do |photo| %>
                 <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag photo.image.url, size: "370x250" %></a></div>
+                <%= link_to "add facility photos", new_photo_path(@facility) %>
               <% end %>
             </div>
           </div>
@@ -41,11 +42,11 @@
                 <tbody>
                 <tr>
                   <td>Hotel</td>
-                  <td>The Grand Regancy Hotel</td>
+                  <td><%= @facility.hotel.name %></td>
                 </tr>
                 <tr>
                   <td>Location</td>
-                  <td>Nairobi CBD</td>
+                  <td><%= @facility.hotel.city %></td>
                 </tr>
                 <tr>
                   <td>Internet</td>
@@ -96,41 +97,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>U Style</td>
-                  <td>Min 100</td>
-                  <td>Max 150</td>
-                </tr>
-                <tr>
-                  <td>Classroom</td>
-                  <td>Min 100</td>
-                  <td>Max 150</td>
-                </tr>
-                <tr>
-                  <td>Theatre</td>
-                  <td>Min 100</td>
-                  <td>Max 150</td>
-                </tr>
-                <tr>
-                  <td>Lawn</td>
-                  <td>Min 100</td>
-                  <td>Max 150</td>
-                </tr>
-                <tr>
-                  <td>Board Room</td>
-                  <td>Min 100</td>
-                  <td>Max 150</td>
-                </tr>
-                <tr>
-                  <td>Round Table</td>
-                  <td>Min 100</td>
-                  <td>Max 150</td>
-                </tr>
-                <tr>
-                  <td>Cocktail</td>
-                  <td>Min 100</td>
-                  <td>Max 150</td>
-                </tr>
+                  <% i = 0 %>
+                    <% @facility.facility_layouts.split(" ").length.times do |orientation| %>
+                        <tr>
+                          <td><%= @facility.facility_layouts.split(" ")[i] %>
+                          <td>Max Capacity: <%= @facility.capacity.split(" ")[i] %></td></td>
+                        </tr>
+                      <% i += 1 %>
+                    <% end %>
                 </tbody>
               </table>
             </div>
@@ -165,7 +139,7 @@
                     <del><%= number_to_currency(@facility.price , :unit => "kes") %>/day</del>
                 </span>
                 </p>
-              <div class="btn-group-isotope"><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">Facility Owner</a><%= link_to "add facility photos", new_photo_path(@facility), class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
+              <div class="btn-group-isotope"><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">Facility Owner</a><%= link_to "view owner's profile", root_path, class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
             </div>
           </div>
           <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-6">
@@ -187,30 +161,14 @@
             <div class="media media-mod-3">
               <div class="media-left round img-width-auto"><img src="images/hotel-logo-hilton-hotel.jpg" alt="" width="100" height="100" class="round"></div>
               <div class="media-body">
-                <h6 class="text-primary">Hilton Hotel</h6>
-                <p class="small text-darker">Hilton Int.</p><a href="callto:#" class="text-bold">+254-723-858-383</a>
+                <h6 class="text-primary"><%= @facility.hotel.name %></h6>
+                <p class="small text-darker"><%= @facility.hotel.name %></p><a href="callto:#" class="text-bold"><%= @facility.hotel.phone %></a>
               </div>
             </div>
-            <p>Located in Nairobi's CBD the facilities are convinient</p><a href="agent-personal.html" class="btn btn-primary btn-primary-transparent btn-sm">View Profile</a>
+            <a href="agent-personal.html" class="btn btn-primary btn-primary-transparent btn-sm">View Profile</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<p>
-  <strong>Name:</strong>
-  <%= @facility.name %>
-</p>
-
-<p>
-  <strong>Facility type:</strong>
-  <% i = 0 %>
-  <% @facility.facility_layouts.split(" ").each do |arrangement| %>
-    <li><%= arrangement %> with a capacity of: <%= @facility.capacity.split(" ")[i] %>
-    <% i += 1 %>
-  <% end %>
-</p>
-
-<%= link_to 'Back', facilities_path %>
