@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016103500) do
+ActiveRecord::Schema.define(version: 20171017120806) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 20171016103500) do
     t.string   "description"
     t.string   "capacity"
     t.decimal  "price",            precision: 11, scale: 2
+    t.string   "internet"
+    t.boolean  "parking"
+    t.boolean  "accomodation"
+    t.boolean  "swimming_pool"
+    t.boolean  "pa_system"
+    t.boolean  "bar"
     t.index ["hotel_id"], name: "index_facilities_on_hotel_id"
   end
 

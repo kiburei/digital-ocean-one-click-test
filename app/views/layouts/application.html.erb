@@ -56,11 +56,11 @@
               <ul class="rd-navbar-dropdown">
                 <% if hotel_signed_in? %>
                   <li><%= link_to "Logout", destroy_hotel_session_path,method: :delete%></li>
+                  <li><%= link_to "Dashboard", hotel_path(current_hotel) %></li>
                 <% else %>
                   <li><%= link_to "Login", hotel_session_path %></li>
                   <li><%= link_to "Registration", new_hotel_registration_path %></li>
                 <% end %>
-                <li><%= link_to "Dashboard", edit_hotel_registration_path %></li>
               </ul>
             </li>
 

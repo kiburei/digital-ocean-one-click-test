@@ -3,7 +3,9 @@
 <section class="section-sm section-sm-mod-2">
   <div class="container">
     <h2><%= @facility.name %>, <%= link_to @facility.hotel.name, hotel_path(@facility.hotel) %>, <%= @facility.hotel.city %></h2>
-    <hr>
+    <% if @facility.hotel == current_hotel %>
+      <%= link_to "Edit Listing", edit_facility_path %>
+    <% end %>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8">
         <% if @facility.photos.any? %>
@@ -51,36 +53,47 @@
                 </tr>
                 <tr>
                   <td>Internet</td>
-                  <td>WiFi and Cable</td>
+                  <td><%= @facility.internet %></td>
                 </tr>
                 <tr>
                   <td>Parking</td>
-                  <td>Available</td>
+                    <% if @facility.parking == true %>
+                      <td>Available</td>
+                    <% else %>
+                      <td>Not Available</td>
+                    <% end %>
                 </tr>
                 <tr>
                   <td>Accomodation Available</td>
-                  <td>Boston Glen (925) 862-2026</td>
+                    <% if @facility.accomodation == true %>
+                      <td><%= @facility.hotel.hotel_manager_first_name %> <%= @facility.hotel.hotel_manager_phone %> </td>
+                    <% else %>
+                      <td>Not Available</td>
+                    <% end %>
                 </tr>
                 <tr>
                   <td>Swimming Pool</td>
-                  <td>2 Available</td>
+                  <% if @facility.swimming_pool == true %>
+                    <td>Available</td>
+                  <% else %>
+                    <td>Not Available</td>
+                  <% end %>
                 </tr>
                 <tr>
                   <td>Public Adress System</td>
-                  <td>Avaialble</td>
+                  <% if @facility.pa_system == true %>
+                    <td>Available</td>
+                  <% else %>
+                    <td>Not Available</td>
+                  <% end %>
                 </tr>
                 <tr>
                   <td>Bar</td>
-                  <td>Avaialbe for certain hrs</td>
-                </tr>
-                <tr>
-                  <td>Conference Stationery</td>
-                  <td>Available</td>
-                </tr>
-                <tr>
-                  <td>Lawn</td>
-                  <td>Available</td>
-                </tr>
+                  <% if @facility.bar == true %>
+                    <td>Available</td>
+                  <% else %>
+                    <td>Not Available</td>
+                  <% end %>
                 </tr>
                 </tbody>
               </table>
@@ -114,16 +127,6 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
         <div class="catalog-sidebar range">
-          <div class="sidebar-module cell-sm-12 text-left col-md-push-0">
-            <ul class="list-unstyled small">
-              <li><span class="text-darker">Created:</span>
-                <time datetime="2015"><%= @facility.created_at %></time>
-              </li>
-              <li><span class="text-darker">Updated:</span>
-                <time datetime="2015"><%= @facility.updated_at %></time>
-              </li>
-            </ul>
-          </div>
           <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-2">
             <% i = 0 %>
               <% @facility.facility_layouts.split(" ").length.times do |orientation| %>
@@ -140,23 +143,10 @@
                     <del><%= number_to_currency(@facility.price , :unit => "kes") %>/day</del>
                 </span>
                 </p>
-              <div class="btn-group-isotope"><a href="contact_us.html" class="btn btn-primary btn-primary-transparent btn-md btn-min-width-lg">Facility Owner</a><%= link_to "view owner's profile", root_path, class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
+              <div class="btn-group-isotope"><%= link_to "Book Facility", root_path, class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
             </div>
           </div>
-          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-6">
-            <h4>View Owner's Profile</h4>
-            <!-- Rd Mailform result field-->
-            <div class="rd-mailform-validate"></div>
-            <!-- RD Mailform-->
-            <form data-result-class="rd-mailform-validate" data-form-type="contact" method="post" action="bat/rd-mailform.php" class="rd-mailform">
-              <input type="text" name="name" data-constraints="@NotEmpty" placeholder="Your First Name">
-              <input type="text" name="name-2" data-constraints="@NotEmpty" placeholder="Your Last Name">
-              <input type="text" name="phone" data-constraints="@Phone" placeholder="Your phone">
-              <input type="text" name="email" data-constraints="@NotEmpty @Email" placeholder="Your e-mail">
-              <textarea name="message" data-constraints="@NotEmpty" placeholder="I`m interested in 7758 Laguna Heights Court, Boston, MA 02127. Please contact me with more information!"></textarea>
-              <button class="btn btn-primary btn-md">send message</button>
-            </form>
-          </div>
+
           <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-7">
             <h4>Facility Owner</h4>
             <div class="media media-mod-3">
@@ -166,7 +156,7 @@
                 <p class="small text-darker"><%= @facility.hotel.name %></p><a href="callto:#" class="text-bold"><%= @facility.hotel.phone %></a>
               </div>
             </div>
-            <a href="agent-personal.html" class="btn btn-primary btn-primary-transparent btn-sm">View Profile</a>
+            <%= link_to "View Profile", hotel_path(@facility.hotel), class: "btn btn-primary btn-primary-transparent btn-sm" %>
           </div>
         </div>
       </div>

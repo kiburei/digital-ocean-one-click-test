@@ -20,6 +20,8 @@ gem 'coffee-rails', '~> 4.2'
 # Upload Images
 gem 'carrierwave'
 gem 'mini_magick'
+# use has scope to filter data
+gem 'has_scope'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

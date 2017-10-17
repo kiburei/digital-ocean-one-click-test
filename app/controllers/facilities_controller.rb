@@ -1,10 +1,13 @@
 class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:show, :edit, :update, :destroy]
+  has_scope :by_price
+  has_scope :by_capacity
 
   # GET /facilities
   # GET /facilities.json
   def index
-    @facilities = Facility.all
+    @swiper = Facility.all
+    @facilities = apply_scopes(Facility).all
     @facility_layouts = ['U-Shape', 'Classroom', 'Theatre', 'Lawn', 'Board-Room', 'Round-Table', 'Cocktail']
     # Last x facilities to be added
     @recent = Facility.last(6).reverse
@@ -98,6 +101,6 @@ class FacilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def facility_params
-      params.require(:facility).permit(:name, :hotel_id, :price, :capacity => [], :facility_layouts => [])
+      params.require(:facility).permit(:name, :hotel_id, :price, :internet, :parking, :accomodation, :swimming_pool, :pa_system, :bar, :capacity => [], :facility_layouts => [])
     end
 end

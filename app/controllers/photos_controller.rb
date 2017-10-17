@@ -7,12 +7,12 @@ class PhotosController < ApplicationController
   def create
     @facility = Facility.find(photo_params[:facility_id])
     photo_params[:image].length.times do |i|
-      @photo = Photo.new(image: photo_params[:image][i], facility_id: photo_params[:facility_id] )
+      @photo = Photo.new(image: photo_params[:image][i], facility_id: photo_params[:facility_id], hotel_id: photo_params[:hotel_id] )
       if @photo.save != true then redirect_to @facility end
     end
     respond_to do |format|
-        format.html { redirect_to @facility, notice: "Photos successfully uploaded" }
-      end
+      format.html { redirect_to @facility, notice: "Photos successfully uploaded" }
+    end
   end
 
   private
