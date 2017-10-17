@@ -23,7 +23,7 @@
   <tbody>
     <% @facilities.each do |facility| %>
     <tr>
-      <td><%= facility.name %></td>
+      <td><%= link_to facility.name, facility_path(facility) %></td>
       <td></td>
       <td></td>
         <td>

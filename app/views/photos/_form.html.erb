@@ -13,7 +13,7 @@
   <%= f.hidden_field :facility_id, value: params[:format]  %>
   <div class="field">
     <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, :multiple => true %>
   </div>
 
   <div class="actions">

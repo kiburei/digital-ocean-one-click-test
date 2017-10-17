@@ -5,7 +5,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities.json
   def index
     @facilities = Facility.all
-    @facility_layouts = ['U Style', 'Classroom', 'Theatre', 'Lawn', 'Board Room', 'Round Table', 'Cocktail']
+    @facility_layouts = ['U-Shape', 'Classroom', 'Theatre', 'Lawn', 'Board-Room', 'Round-Table', 'Cocktail']
     # Last x facilities to be added
     @recent = Facility.last(6).reverse
   end
@@ -29,7 +29,7 @@ class FacilitiesController < ApplicationController
   # GET /facilities/new
   def new
     @facility = Facility.new
-    @facility_layouts = ['U Style', 'Classroom', 'Theatre', 'Lawn', 'Board Room', 'Round Table', 'Cocktail']
+    @facility_layouts = ['U-Shape', 'Classroom', 'Theatre', 'Lawn', 'Board-Room', 'Round-Table', 'Cocktail']
   end
 
   # GET /facilities/1/edit
@@ -53,7 +53,7 @@ class FacilitiesController < ApplicationController
 
     respond_to do |format|
       if @facility.save
-        format.html { redirect_to @facility, notice: 'Facility was successfully added.' }
+        format.html { redirect_to new_photo_path(@facility), notice: 'Please add photo to complete.' }
         format.json { render :show, status: :created, location: @facility }
       else
         format.html { render :new }

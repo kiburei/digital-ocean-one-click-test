@@ -5,15 +5,14 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new(photo_params)
     @facility = Facility.find(photo_params[:facility_id])
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to @facility, notice: "Photo successfully uploaded" }
-      else
-        format.html { render :new }
-      end
+    photo_params[:image].length.times do |i|
+      @photo = Photo.new(image: photo_params[:image][i], facility_id: photo_params[:facility_id] )
+      if @photo.save != true then redirect_to @facility end
     end
+    respond_to do |format|
+        format.html { redirect_to @facility, notice: "Photos successfully uploaded" }
+      end
   end
 
   private
@@ -23,7 +22,7 @@ class PhotosController < ApplicationController
   end
 
   def photo_params
-    params.require(:photo).permit(:image, :hotel_id, :facility_id)
+    params.require(:photo).permit(:hotel_id, :facility_id, :image => [])
   end
 
 end
