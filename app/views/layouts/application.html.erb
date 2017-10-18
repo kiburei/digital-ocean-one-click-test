@@ -37,7 +37,9 @@
           <!-- RD Navbar Brand-->
           <div class="rd-navbar-brand"><a href="/" class="brand-name"><%= image_tag 'meet-in-africa-logo.png', size: "200x50", alt: 'Meet In Africa Logo' %></a></div>
         </div>
-        <div class="btn-group"><%= link_to "Add Facility", new_facility_path(current_hotel), class: "btn btn-sm btn-primary" %></div>
+        <% if hotel_signed_in? %>
+          <div class="btn-group"><%= link_to "Add Facility", new_facility_path(current_hotel), class: "btn btn-sm btn-primary" %></div>
+        <% end %>
         <div class="rd-navbar-nav-wrap">
           <!-- RD Navbar Nav-->
           <ul class="rd-navbar-nav">
@@ -52,14 +54,26 @@
               </ul>
             </li>
 
-            <li><a href="#">User/Owner <span class="badge">5</span></a>
+            <!-- Total booking of Current Hotel -->
+
+            <li><a href="#">User/Owner
+              <% if hotel_signed_in? %>
+              <% count = 0 %>
+              <% current_hotel.facilities.each do |facility| %>
+              <% count += facility.bookings.count %>
+              <% end %>
+                <span class="badge"><%= count %></span>
+              <% end %>
+            </a>
               <ul class="rd-navbar-dropdown">
-                <% if hotel_signed_in? %>
+                <% if hotel_signed_in? || user_signed_in? %>
                   <li><%= link_to "Logout", destroy_hotel_session_path,method: :delete%></li>
-                  <li><%= link_to "Dashboard", hotel_path(current_hotel) %></li>
+                  <li><%= if hotel_signed_in? then link_to "Dashboard", hotel_path(current_hotel) end %></li>
                 <% else %>
-                  <li><%= link_to "Login", hotel_session_path %></li>
-                  <li><%= link_to "Registration", new_hotel_registration_path %></li>
+                  <li><%= link_to "Login as User", user_session_path %></li>
+                  <li><%= link_to "User Registration", new_user_registration_path %></li>
+                  <li><%= link_to "Login as Hotel", hotel_session_path %></li>
+                  <li><%= link_to "Hotel Registration", new_hotel_registration_path %></li>
                 <% end %>
               </ul>
             </li>
