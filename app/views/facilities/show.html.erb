@@ -150,7 +150,7 @@
           <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-7">
             <h4>Facility Owner</h4>
             <div class="media media-mod-3">
-              <div class="media-left round img-width-auto"><img src="images/hotel-logo-hilton-hotel.jpg" alt="" width="100" height="100" class="round"></div>
+              <div class="media-left round img-width-auto"><%= image_tag  @facility.hotel.logo.url, class: "round" %></div>
               <div class="media-body">
                 <h6 class="text-primary"><%= @facility.hotel.name %></h6>
                 <p class="small text-darker"><%= @facility.hotel.name %></p><a href="callto:#" class="text-bold"><%= @facility.hotel.phone %></a>

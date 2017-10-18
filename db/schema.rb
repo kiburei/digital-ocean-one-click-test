@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017120806) do
+ActiveRecord::Schema.define(version: 20171017124218) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20171017120806) do
     t.string   "hotel_manager_last_name"
     t.string   "hotel_manager_phone"
     t.         "description"
+    t.string   "logo"
     t.index ["email"], name: "index_hotels_on_email", unique: true
     t.index ["reset_password_token"], name: "index_hotels_on_reset_password_token", unique: true
   end

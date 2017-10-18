@@ -1,4 +1,5 @@
 class Hotel < ApplicationRecord
+	mount_uploader :logo, ImageUploader
 	has_many :facilities
 	has_many :photos
   # Include default devise modules. Others available are:
