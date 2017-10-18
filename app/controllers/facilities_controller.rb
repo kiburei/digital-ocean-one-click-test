@@ -1,5 +1,5 @@
 class FacilitiesController < ApplicationController
-  before_action :set_facility, only: [:show, :edit, :update, :destroy]
+  before_action :set_facility, only: [:show, :edit, :update, :destroy, :book_facility]
   has_scope :by_price
   has_scope :by_capacity
 
@@ -94,6 +94,11 @@ class FacilitiesController < ApplicationController
     else
       redirect_to @facility, notice: 'Sorry, only the owner can delete this facility :('
     end
+  end
+
+  def book_facility
+    UserMailer.booking_email(@facility).deliver
+    redirect_to @facility, notice: 'Email Sent'
   end
 
   private

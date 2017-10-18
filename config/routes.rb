@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get "category", to: "facilities#category"
 
+  get "booking/:id" => "facilities#book_facility", as: :book
 
   root 'facilities#index'
 
