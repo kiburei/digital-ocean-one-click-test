@@ -69,7 +69,7 @@ class FacilitiesController < ApplicationController
   # PATCH/PUT /facilities/1
   # PATCH/PUT /facilities/1.json
   def update
-    
+
     respond_to do |format|
       if @facility.update(facility_params)
         format.html { redirect_to @facility, notice: 'Facility was successfully updated.' }
@@ -96,8 +96,13 @@ class FacilitiesController < ApplicationController
   end
 
   def book_facility
-    UserMailer.booking_email(@facility).deliver
-    redirect_to @facility, notice: 'Email Sent'
+    @booking = @facility.bookings.build(guests: 23, layout: "Cocktail")
+    if @booking.save
+      redirect_to @facility, notice: 'Facility has been successfully booked, please wait for feedback from hotel management'
+      UserMailer.booking_email(@facility).deliver
+    else
+      redirect_to @facility, notice: 'An error occured while trying to book this facility'
+    end
   end
 
   private
