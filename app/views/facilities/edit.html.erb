@@ -50,14 +50,7 @@
     <%= f.check_box :bar %>
   </div>
 <!-- Layouts and capacity -->
-  <div class="field">
-    <% i = 0 %>
-      <% @facility.facility_layouts.split(" ").length.times do |orientation| %>
-          <%= f.label @facility.facility_layouts.split(" ")[i] %>
-          <%= f.number_field :capacity, value: @facility.capacity.split(" ")[i] %>
-        <% i += 1 %>
-      <% end %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

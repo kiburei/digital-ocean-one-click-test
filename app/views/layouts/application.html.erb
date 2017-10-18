@@ -52,7 +52,7 @@
               </ul>
             </li>
 
-            <li><a href="#">User/Owner</a>
+            <li><a href="#">User/Owner <span class="badge">5</span></a>
               <ul class="rd-navbar-dropdown">
                 <% if hotel_signed_in? %>
                   <li><%= link_to "Logout", destroy_hotel_session_path,method: :delete%></li>

@@ -69,8 +69,7 @@ class FacilitiesController < ApplicationController
   # PATCH/PUT /facilities/1
   # PATCH/PUT /facilities/1.json
   def update
-    @facility.facility_layouts = facility_params[:facility_layouts].join(" ")
-    @facility.capacity = facility_params[:capacity].join(" ")
+    
     respond_to do |format|
       if @facility.update(facility_params)
         format.html { redirect_to @facility, notice: 'Facility was successfully updated.' }
