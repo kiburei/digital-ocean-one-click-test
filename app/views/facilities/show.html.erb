@@ -13,7 +13,11 @@
             <!-- Slick Carousel-->
             <div class="carousel-slider slider">
               <% @facility.photos.each do |photo| %>
-                <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag photo.image.url, size: "370x250" %></a></div>
+                <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image">
+                  <div class="center-cropped">
+                    <%= image_tag photo.image.url, size: "370x250" %></a>
+                  </div>
+                </div>
               <% end %>
 
 

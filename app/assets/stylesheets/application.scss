@@ -13,4 +13,14 @@
  *= require_tree .
  *= require_self
  */
- 
+
+ .center-cropped {
+   height: 400px;
+   background-position: center center;
+   background-repeat: no-repeat;
+ }
+ .card-image {
+   height: 200px;
+   background-position: center center;
+   background-repeat: no-repeat;
+ }
