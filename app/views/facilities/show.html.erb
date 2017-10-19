@@ -24,8 +24,7 @@
             </div>
             <div class="carousel-thumbnail slider">
               <% @facility.photos.each do |photo| %>
-                <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image"><%= image_tag photo.image.url, size: "370x250" %></a></div>
-
+                <div class="item"><%= image_tag photo.image.url, class: "thumb-image" %></div>
               <% end %>
             </div>
           </div>
