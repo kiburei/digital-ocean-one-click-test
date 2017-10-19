@@ -1,5 +1,5 @@
 class FacilitiesController < ApplicationController
-  before_action :set_facility, only: [:show, :edit, :update, :destroy, :book_facility]
+  before_action :set_facility, only: [:show, :edit, :update, :destroy, :new_booking]
   has_scope :by_price
   has_scope :by_capacity
 
@@ -95,14 +95,8 @@ class FacilitiesController < ApplicationController
     end
   end
 
-  def book_facility
-    @booking = @facility.bookings.build(guests: 23, layout: "Cocktail")
-    if @booking.save
-      redirect_to @facility, notice: 'Facility has been successfully booked, please wait for feedback from hotel management'
-      UserMailer.booking_email(@facility).deliver
-    else
-      redirect_to @facility, notice: 'An error occured while trying to book this facility'
-    end
+  def new_booking
+    @booking = @facility.bookings.build
   end
 
   private

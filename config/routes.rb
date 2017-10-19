@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions", registrations: "users/registrations" }
   devise_for :hotels, :controllers => { registrations: 'registrations' }
   devise_for :installs
-  resources :facilities
+  resources :facilities do
+    resources :bookings
+  end
   resources :photos
 
   devise_scope :hotel do
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
 
   get "category", to: "facilities#category"
 
-  get "booking/:id" => "facilities#book_facility", as: :book
+  get "booking/:id" => "facilities#new_booking", as: :new_booking
 
   root 'facilities#index'
 

@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20171018100332) do
     t.string   "hotel_manager_first_name"
     t.string   "hotel_manager_last_name"
     t.string   "hotel_manager_phone"
-    t.         "description"
+    t.string   "description"
     t.string   "logo"
     t.index ["email"], name: "index_hotels_on_email", unique: true
     t.index ["reset_password_token"], name: "index_hotels_on_reset_password_token", unique: true

@@ -143,14 +143,15 @@
                     <del><%= number_to_currency(@facility.price , :unit => "kes") %>/day</del>
                 </span>
                 </p>
-              <div class="btn-group-isotope"><%= link_to "Book Facility", book_path, class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
+              <div class="btn-group-isotope"><%= link_to "Book Facility", new_booking_path, class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
             </div>
           </div>
 
           <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-7">
             <h4>Facility Owner</h4>
             <div class="media media-mod-3">
-              <div class="media-left round img-width-auto"><%= image_tag  @facility.hotel.logo.url, class: "round" %></div>
+              <div class="media-left round img-width-auto">
+              </div>
               <div class="media-body">
                 <h6 class="text-primary"><%= @facility.hotel.name %></h6>
                 <p class="small text-darker"><%= @facility.hotel.name %></p><a href="callto:#" class="text-bold"><%= @facility.hotel.phone %></a>
