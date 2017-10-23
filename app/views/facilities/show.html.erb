@@ -150,6 +150,17 @@
             </div>
           </div>
 
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-4">
+            <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@facility.hotel.latitude}%2C#{@facility.hotel.longitude}" %>
+
+            <h3>Nearby locations</h3>
+            <ul>
+            <% for hotel in @facility.hotel.nearbys(10) %>
+              <li><%= link_to hotel.name, hotel %> (<%= hotel.distance.round(2) %> miles)</li>
+            <% end %>
+            </ul>
+          </div>
+
           <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-7">
             <h4>Facility Owner</h4>
             <div class="media media-mod-3">
