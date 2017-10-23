@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   get "category", to: "facilities#category"
 
+  post "filter", to: "facilities#filter"
+
+  get "filter", to: "facilities#filter"
+
   get "booking/:id" => "facilities#new_booking", as: :new_booking
 
   root 'facilities#index'

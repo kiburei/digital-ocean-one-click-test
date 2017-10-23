@@ -1,0 +1,25 @@
+<h1>Filtered view</h1>
+<% if @filtered.count > 0 %>
+  <div class="row clearleft-custom">
+    <% @filtered.each do |facility| %>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="thumbnail"><a href="/facilities/<%= facility.id %>" class="img-link card-image"><%= image_tag Photo.find(facility.photos.ids.sample).image.url %><span class="thumbnail-price"><%= number_to_currency(facility.price, :unit => "Kes") %>/<span class="mon">day</span></span></a>
+          <div class="caption">
+            <h4><a href="/facilities/<%= facility.id %>"><%= facility.name %> in <%= link_to facility.hotel.name, hotel_path(facility.hotel) %></a></h4>
+            <% i = 0 %>
+              <% facility.facility_layouts.split(" ").length.times do |orientation| %>
+                <div class="col-md-6" style="font-size: 15px;">
+                  <span class="icon icon-sm icon-darker hotel-icon-10"></span><%= facility.facility_layouts.split(" ")[i] %> - <%= facility.capacity.split(" ")[i] %>
+                </div>
+                <% i += 1 %>
+              <% end %></br>
+            <p><%= facility.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<% else %>
+  <p>Sorry no results found</p>
+<% end %>

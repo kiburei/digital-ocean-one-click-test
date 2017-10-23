@@ -1,13 +1,11 @@
 class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:show, :edit, :update, :destroy, :new_booking]
-  has_scope :by_price
-  has_scope :by_capacity
 
   # GET /facilities
   # GET /facilities.json
   def index
+    @facilities = Facility.all
     @swiper = Facility.all
-    @facilities = apply_scopes(Facility).all
     @facility_layouts = ['U-Shape', 'Classroom', 'Theatre', 'Lawn', 'Board-Room', 'Round-Table', 'Cocktail']
     # Last x facilities to be added
     @recent = Facility.last(6).reverse
@@ -21,6 +19,19 @@ class FacilitiesController < ApplicationController
         @orientation.push(facility)
       end
       @orientation
+    end
+  end
+
+  def filter
+    filter_params = @_params
+    range = filter_params[:range_1].to_i..filter_params[:range_2].to_i
+    @filtered = []
+    @facilities = Facility.all
+    @facilities.each do |facility|
+      if (facility.hotel.city == filter_params[:city]) || (facility.facility_layouts.include? filter_params[:layout]) || (range.include? facility.price.to_i) || (facility.capacity.split(" ").include? filter_params[:capacity])
+        @filtered.push(facility)
+      end
+      @filtered
     end
   end
 
