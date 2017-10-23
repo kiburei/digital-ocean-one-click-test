@@ -9,6 +9,17 @@
 <h6>Location</h6>
 <%= @hotel.city %>,<%= @hotel.county %>, <%= @hotel.country %>
 
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@hotel.latitude}%2C#{@hotel.longitude}" %>
+
+<h3>Nearby locations</h3>
+<ul>
+<% for hotel in @hotel.nearbys(10) %>
+  <li><%= link_to hotel.name, hotel %> (<%= hotel.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
+
 <table class="table">
   <th>
     <tr>

@@ -6,4 +6,7 @@ class Hotel < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+	geocoded_by :name
+	after_validation :geocode, :if => :name_changed?			 
 end

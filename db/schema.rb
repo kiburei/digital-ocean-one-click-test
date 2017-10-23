@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018100332) do
+ActiveRecord::Schema.define(version: 20171023103015) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "guests"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20171018100332) do
     t.string   "hotel_manager_phone"
     t.string   "description"
     t.string   "logo"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["email"], name: "index_hotels_on_email", unique: true
     t.index ["reset_password_token"], name: "index_hotels_on_reset_password_token", unique: true
   end
