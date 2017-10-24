@@ -10,7 +10,31 @@
 <%= @hotel.city %>,<%= @hotel.county %>, <%= @hotel.country %>
 
 
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@hotel.latitude}%2C#{@hotel.longitude}" %>
+
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: <%= @hotel.latitude %>, lng: <%= @hotel.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 50,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFEw_96l6flHqNZA83A_dw3N-5md5BXmA&callback=initMap">
+    </script>
 
 <h3>Nearby locations</h3>
 <ul>

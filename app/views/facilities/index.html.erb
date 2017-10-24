@@ -28,41 +28,35 @@
       <%= form_tag(controller: "facilities", action: "filter" , method: "get") do %>
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label for="">Location</label>
-                <%= select_tag :city, options_for_select(["Select City"].concat(Hotel.uniq.pluck(:city))) %>
+              <%= text_field_tag :city %>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label for="">Layout</label>
                 <%= select_tag :layout, options_for_select(["Select Layout"].concat(@facility_layouts), :select) %>
+            </div>
+            <div class="col-sm-4">
+              <label>Max Price</label>
+              <%= number_field_tag :range_2 %>
             </div>
           </div>
         </div>
         <div class="form-group width-2">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label for="">Hotel</label>
               <%= select_tag :hotel, options_for_select(["Select Hotel"].push(Hotel.uniq.pluck(:name))) %>
             </div>
-            <div class="col-sm-6">
-              <label for="select-8">Max People</label>
+            <div class="col-sm-4">
+              <label for="select-8">No of People</label>
               <%= number_field_tag :capacity %>
             </div>
-
-          </div>
-        </div>
-        <div class="form-group width-1">
-          <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label>Min Price</label>
               <%= number_field_tag :range_1 %>
             </div>
-            <div class="col-sm-6">
-              <label>Max Price</label>
-              <%= number_field_tag :range_2 %>
-            </div>
           </div>
-          <!-- <div data-min="100" data-max="10000" data-start="[600, 9500]" data-step="50" data-tooltip="true" data-min-diff="100" data-input=".rd-range-input-value-1" data-input-2=".rd-range-input-value-2" class="rd-range"></div> -->
         </div>
         <%= submit_tag("Search") %>
 
