@@ -18,6 +18,56 @@
         </div>
       </div>
     <% end %>
+    <div style="float: right;">
+      <!-- Google Maps -->
+          <style>
+             #map {
+              height: 400px;
+              width: 100%;
+             }
+          </style>
+          <h3>My Google Maps Demo</h3>
+          <div id="map"></div>
+          <script>
+
+            function initMap() {
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3,
+                //Kenya 0.0236° S, 37.9062° E
+                center: {lat: 0.0236, lng: 37.9062}
+              });
+
+              // Create an array of alphabetical characters used to label the markers.
+              var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+              // Add some markers to the map.
+              // Note: The code uses the JavaScript Array.prototype.map() method to
+              // create an array of markers based on a given "locations" array.
+              // The map() method here has nothing to do with the Google Maps API.
+              var markers = locations.map(function(location, i) {
+                return new google.maps.Marker({
+                  position: location,
+                  label: labels[i % labels.length]
+                });
+              });
+
+              // Add a marker clusterer to manage the markers.
+              var markerCluster = new MarkerClusterer(map, markers,
+                  {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+            }
+            var locations = []
+            <% @filtered.each do |facility| %>
+              locations.push({lat: <%= facility.hotel.latitude %>, lng: <%= facility.hotel.longitude %>})
+            <% end %>
+          </script>
+          <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+             </script>
+             <script async defer
+             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOFFKgy9_R0ZwtK52sOfAzmEPHiy18bcE&callback=initMap">
+             </script>
+
+
+    </div>
   </div>
 
 <% else %>
