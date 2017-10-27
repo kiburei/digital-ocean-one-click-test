@@ -20,29 +20,42 @@
     <h3>My Google Maps Demo</h3>
     <div id="map"></div>
     <script>
+
       function initMap() {
-        var uluru = {lat: <%= @hotel.latitude %>, lng: <%= @hotel.longitude %>};
+        var hotel = {lat: <%= @hotel.latitude %>, lng: <%= @hotel.longitude %>}
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 50,
-          center: uluru
+          zoom: 3,
+          center: hotel
         });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
+
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
         });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
       }
+      var locations = []
+      <% Hotel.all.each do |hotel| %>
+        locations.push({lat: <%= hotel.latitude %>, lng: <%= hotel.longitude %>})
+      <% end %>
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFEw_96l6flHqNZA83A_dw3N-5md5BXmA&callback=initMap">
-    </script>
-
-<h3>Nearby locations</h3>
-<ul>
-<% for hotel in @hotel.nearbys(10) %>
-  <li><%= link_to hotel.name, hotel %> (<%= hotel.distance.round(2) %> miles)</li>
-<% end %>
-</ul>
-
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+       </script>
+       <script async defer
+       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOFFKgy9_R0ZwtK52sOfAzmEPHiy18bcE&callback=initMap">
+       </script>
 
 <table class="table">
   <th>

@@ -28,7 +28,7 @@ class FacilitiesController < ApplicationController
     @filtered = []
     @facilities = Facility.all
     @facilities.each do |facility|
-      if (facility.hotel.city == filter_params[:city]) || (facility.facility_layouts.include? filter_params[:layout]) || (range.include? facility.price.to_i) || (facility.capacity.split(" ").include? filter_params[:capacity])
+      if (facility.hotel.city == filter_params[:county]) || (facility.facility_layouts.include? filter_params[:layout]) || (range.include? facility.price.to_i) || (facility.capacity.split(" ").include? filter_params[:capacity])
         @filtered.push(facility)
       end
       @filtered
