@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   post "filter", to: "facilities#filter"
 
-  get "filter", to: "facilities#filter"
+  get "results", to: "facilities#results"
 
   get "booking/:id" => "facilities#new_booking", as: :new_booking
 

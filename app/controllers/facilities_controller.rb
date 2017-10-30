@@ -23,16 +23,21 @@ class FacilitiesController < ApplicationController
   end
 
   def filter
-    filter_params = @_params
+    redirect_to :action => "results", :county => params[:county], :range_1 => params[:range_1], :range_2 => params[:range_2], :capacity => params[:capacity], :layout => params[:layout]
+  end
+
+  def results
+    filter_params = params
     range = filter_params[:range_1].to_i..filter_params[:range_2].to_i
     @filtered = []
     @facilities = Facility.all
     @facilities.each do |facility|
-      if (facility.hotel.city == filter_params[:county]) || (facility.facility_layouts.include? filter_params[:layout]) || (range.include? facility.price.to_i) || (facility.capacity.split(" ").include? filter_params[:capacity])
-        @filtered.push(facility)
+        if (facility.hotel.city == filter_params[:county]) || (facility.facility_layouts.include? filter_params[:layout]) || (range.include? facility.price.to_i) || (facility.capacity.split(" ").include? filter_params[:capacity])
+          @filtered.push(facility)
+        end
+        @filtered
       end
-      @filtered
-    end
+    render :filter
   end
 
   # GET /facilities/1

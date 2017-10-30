@@ -25,12 +25,12 @@
   <div class="container position-margin-top undefined">
     <div class="search-form-wrap bg-white container-shadow">
       <h3>Search Conference Facilities</h3>
-      <%= form_tag(controller: "facilities", action: "filter" , method: "get") do %>
+      <%= form_tag(controller: "facilities", action: "filter") do %>
         <div class="form-group">
           <div class="row">
             <div class="col-sm-4">
               <label for="">County</label>
-              <%= text_field_tag :county %>
+              <%= text_field_tag :county, @params %>
             </div>
             <div class="col-sm-4">
               <label for="">Layout</label>

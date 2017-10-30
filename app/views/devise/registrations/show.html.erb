@@ -23,7 +23,7 @@
       function initMap() {
         var hotel = {lat: <%= @hotel.latitude %>, lng: <%= @hotel.longitude %>}
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 3,
+          zoom: 15,
           center: hotel
         });
 
