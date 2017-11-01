@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023103015) do
+ActiveRecord::Schema.define(version: 20171101092742) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "guests"
@@ -18,7 +21,7 @@ ActiveRecord::Schema.define(version: 20171023103015) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "facility_id"
-    t.index ["facility_id"], name: "index_bookings_on_facility_id"
+    t.index ["facility_id"], name: "index_bookings_on_facility_id", using: :btree
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20171023103015) do
     t.boolean  "swimming_pool"
     t.boolean  "pa_system"
     t.boolean  "bar"
-    t.index ["hotel_id"], name: "index_facilities_on_hotel_id"
+    t.index ["hotel_id"], name: "index_facilities_on_hotel_id", using: :btree
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -68,8 +71,8 @@ ActiveRecord::Schema.define(version: 20171023103015) do
     t.string   "logo"
     t.float    "latitude"
     t.float    "longitude"
-    t.index ["email"], name: "index_hotels_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_hotels_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_hotels_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_hotels_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "installs", force: :cascade do |t|
@@ -85,8 +88,8 @@ ActiveRecord::Schema.define(version: 20171023103015) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_installs_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_installs_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "photos", force: :cascade do |t|
@@ -95,8 +98,8 @@ ActiveRecord::Schema.define(version: 20171023103015) do
     t.datetime "updated_at",  null: false
     t.integer  "hotel_id"
     t.integer  "facility_id"
-    t.index ["facility_id"], name: "index_photos_on_facility_id"
-    t.index ["hotel_id"], name: "index_photos_on_hotel_id"
+    t.index ["facility_id"], name: "index_photos_on_facility_id", using: :btree
+    t.index ["hotel_id"], name: "index_photos_on_hotel_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,8 +115,10 @@ ActiveRecord::Schema.define(version: 20171023103015) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.string   "provider"
+    t.string   "uid"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end
