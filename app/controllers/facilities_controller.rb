@@ -27,6 +27,7 @@ class FacilitiesController < ApplicationController
   end
 
   def results
+    @facility_layouts = ['U-Shape', 'Classroom', 'Theatre', 'Lawn', 'Board-Room', 'Round-Table', 'Cocktail']
     filter_params = params
     range = filter_params[:range_1].to_i..filter_params[:range_2].to_i
     @filtered = []
