@@ -1,0 +1,28 @@
+<h1>Book This Facility</h1>
+
+<%= form_for(@booking, url: facility_bookings_path(@facility) ) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this facility from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :guests %>
+    <%= f.number_field :guests %>
+  </div>
+  <%= f.hidden_field :facility_id, value: @facility.id %>
+  <div class="field">
+    <%= f.select :layout, options_for_select(@facility.facility_layouts.split(" "), :selected) %>
+    <%= f.label :layout %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

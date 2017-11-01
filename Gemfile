@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.1','>= 5.0.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+# Use Devise to manage Users
+gem 'devise'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -15,7 +17,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+# Notifications and alerts
+gem 'toastr-rails'
+# Use google maps
+gem 'geocoder'
+# Upload Images
+gem 'carrierwave'
+gem 'mini_magick'
+# use has scope to filter data
+gem 'has_scope'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -26,7 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+# Use filterrific for search and filter
+gem 'filterrific'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

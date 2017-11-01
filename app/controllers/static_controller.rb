@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   def index
+    @hotels = Hotel.all
   end
 
   def categories

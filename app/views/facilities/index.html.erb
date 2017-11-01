@@ -1,0 +1,197 @@
+
+<section>
+  <!--Swiper-->
+  <div data-height="" data-min-height="600px" class="swiper-container swiper-slider">
+    <div class="swiper-wrapper">
+      <% @swiper.each do |facility| %>
+          <div data-slide-bg="http://wamiori.com/meet/images/slide-2.jpg" class="swiper-slide">
+            <div class="swiper-slide-caption">
+              <div class="container">
+                <p data-caption-animate="fadeInDown" class="h1"><%= facility.hotel.name %> - <%=   facility.name  %></p>
+                <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5" style="padding-right: 500px;"><%= facility.description %></p>
+                <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price"><%= number_to_currency(facility.price, :unit => "Kes") %><span>/day</span></div>
+                <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
+            </div>
+          </div>
+      <% end %>
+
+    </div>
+    <!-- Swiper Pagination-->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+<!-- Section Search -->
+<section class="section-sm section-sm-mod-1 bg-dark">
+  <div class="container position-margin-top undefined">
+    <div class="search-form-wrap bg-white container-shadow">
+      <h3>Search Conference Facilities</h3>
+      <%= form_tag(controller: "facilities", action: "filter") do %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-4">
+              <label for="">County</label>
+              <%= text_field_tag :county, @params %>
+            </div>
+            <div class="col-sm-4">
+              <label for="">Layout</label>
+                <%= select_tag :layout, options_for_select(["Select Layout"].concat(@facility_layouts), :select) %>
+            </div>
+            <div class="col-sm-4">
+              <label>Max Price</label>
+              <%= number_field_tag :range_2 %>
+            </div>
+          </div>
+        </div>
+        <div class="form-group width-2">
+          <div class="row">
+            <div class="col-sm-4">
+              <label for="">Hotel</label>
+              <%= select_tag :hotel, options_for_select(["Select Hotel"].push(Hotel.uniq.pluck(:name))) %>
+            </div>
+            <div class="col-sm-4">
+              <label for="select-8">No of People</label>
+              <%= number_field_tag :capacity %>
+            </div>
+            <div class="col-sm-4">
+              <label>Min Price</label>
+              <%= number_field_tag :range_1 %>
+            </div>
+          </div>
+        </div>
+        <%= submit_tag("Search") %>
+
+      <% end %>
+    </div>
+  </div>
+</section>
+<!--Section Categories-->
+<section class="section-sm section-sm-mod-3 bg-dark text-center text-sm-left">
+  <div class="shell">
+    <h2>Facilty Layout</h2>
+    <hr>
+    <div class="range offset-1 text-left">
+      <div class="cell-sm-6 cell-md-4 cell-md-push-1">
+        <div class="category">
+          <%= image_tag 'index-1.jpg', size: "370x250" %>
+          <div class="category-content">
+            <h4>Cocktail</h4>
+            <!-- Count facilities of layout -->
+            <% facilities = Facility.all %>
+            <% count = 0 %>
+            <%  facilities.each do |facility| %>
+             <% if facility.facility_layouts.include? "Cocktail" %>
+                <% count += 1 %>
+              <% end %>
+            <% end %>
+            <p><%= count %> Results</p>
+            <%= link_to "More details", static_single_facility_path, class: "btn btn-sm btn-primary" %> </div>
+        </div>
+        <div class="category">
+          <%= image_tag 'index-2.jpg', size: "370x250" %>
+          <div class="category-content">
+            <h4>Classroom</h4>
+            <!-- Count facilities of layout -->
+            <% count = 0 %>
+            <%  facilities.each do |facility| %>
+             <% if facility.facility_layouts.include? "Classroom" %>
+                <% count += 1 %>
+              <% end %>
+            <% end %>
+            <p><%= count %> Results</p>
+            <%= link_to "More details", category_path("Classroom"), class: "btn btn-sm btn-primary" %> </div>
+        </div>
+      </div>
+      <div class="cell-sm-6 cell-md-4 cell-md-push-3">
+        <div class="category">
+          <%= image_tag 'index-4.jpg', size: "370x250" %>
+          <div class="category-content">
+            <h4>Boardrooms</h4>
+            <!-- Count facilities of layout -->
+            <% count = 0 %>
+            <%  facilities.each do |facility| %>
+             <% if facility.facility_layouts.include? "Boardroom" %>
+                <% count += 1 %>
+              <% end %>
+            <% end %>
+            <p><%= count %> Results</p>
+            <%= link_to "More details", category_path("Boardroom"), class: "btn btn-sm btn-primary" %> </div>
+        </div>
+        <div class="category">
+          <%= image_tag 'index-5.jpg', size: "370x250" %>
+          <div class="category-content">
+            <h4>Reception</h4>
+            <!-- Count facilities of layout -->
+            <% count = 0 %>
+            <%  facilities.each do |facility| %>
+             <% if facility.facility_layouts.include? "Reception" %>
+                <% count += 1 %>
+              <% end %>
+            <% end %>
+            <p><%= count %> Results</p>
+            <%= link_to "More details", category_path("Reception"), class: "btn btn-sm btn-primary" %> </div>
+        </div>
+      </div>
+      <div class="cell-sm-6 cell-sm-preffix-3 cell-md-4 cell-md-preffix-0 cell-md-push-2">
+        <div class="category">
+          <%= image_tag 'index-3.jpg', size: "370x530" %>
+          <div class="category-content">
+            <h4>Banquet</h4>
+            <!-- Count facilities of layout -->
+            <% count = 0 %>
+            <%  facilities.each do |facility| %>
+             <% if facility.facility_layouts.include? "Banquet" %>
+                <% count += 1 %>
+              <% end %>
+            <% end %>
+            <p><%= count %> Results</p>
+            <%= link_to "More details", category_path("Banquet"), class: "btn btn-sm btn-primary" %> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-md text-center text-sm-left">
+  <div class="container">
+    <h2>Recent Submissions</h2>
+    <hr>
+    <div class="row clearleft-custom">
+      <% @recent.each do |facility| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="thumbnail"><a href="/facilities/<%= facility.id %>" class="img-link card-image"><%= image_tag Photo.find(facility.photos.ids.sample).image.url %><span class="thumbnail-price"><%= number_to_currency(facility.price, :unit => "Kes") %>/<span class="mon">day</span></span></a>
+            <div class="caption">
+              <h4><a href="/facilities/<%= facility.id %>"><%= facility.name %> in <%= link_to facility.hotel.name, hotel_path(facility.hotel) %></a></h4>
+              <% i = 0 %>
+                <% facility.facility_layouts.split(" ").length.times do |orientation| %>
+                  <div class="col-md-6" style="font-size: 15px;">
+                    <span class="icon icon-sm icon-darker hotel-icon-10"></span><%= facility.facility_layouts.split(" ")[i] %> - <%= facility.capacity.split(" ")[i] %>
+                  </div>
+                  <% i += 1 %>
+                <% end %></br>
+              <p><%= facility.description %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <a href="property-catalog-grid.html" class="btn btn-md btn-primary offset-5">view all conference facilities</a> </div>
+</section>
+<h2>All Facilities</h2>
+<div class="row clearleft-custom">
+  <% @facilities.each do |facility| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="thumbnail"><a href="/facilities/<%= facility.id %>" class="img-link card-image"><%= image_tag Photo.find(facility.photos.ids.sample).image.url, size: "370x250" %><span class="thumbnail-price"><%= number_to_currency(facility.price, :unit => "Kes") %>/<span class="mon">day</span></span></a>
+        <div class="caption">
+          <h4><a href="/facilities/<%= facility.id %>"><%= facility.name %> in <%= link_to facility.hotel.name, hotel_path(facility.hotel) %></a></h4>
+          <% i = 0 %>
+            <% facility.facility_layouts.split(" ").length.times do |orientation| %>
+              <div class="col-md-6" style="font-size: 15px;">
+                <span class="icon icon-sm icon-darker hotel-icon-10"></span><%= facility.facility_layouts.split(" ")[i] %> - <%= facility.capacity.split(" ")[i] %>
+              </div>
+              <% i += 1 %>
+            <% end %></br>
+          <p><%= facility.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

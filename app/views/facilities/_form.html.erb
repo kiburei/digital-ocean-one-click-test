@@ -1,0 +1,61 @@
+<%= form_for(facility) do |f| %>
+  <% if facility.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(facility.errors.count, "error") %> prohibited this facility from being saved:</h2>
+
+      <ul>
+      <% facility.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :hotel_id, value: current_hotel.id %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Facility Name" %>
+  </div>
+
+  <div class="field">
+    <%= f.number_field :price, placeholder: "Enter Price" %>
+  </div>
+
+  <div class="field">
+    <%= f.select :internet, options_for_select(["Wifi Only", "Wifi and Cable", "Cable Only", "No Internet"], :selected) %>
+    <%= f.label :internet %>
+  </div>
+  <div class="field">
+    <%= f.check_box :parking %>
+    <%= f.label :parking %>
+  </div>
+  <div class="field">
+    <%= f.check_box :accomodation %>
+    <%= f.label :accomodation %>
+  </div>
+  <div class="field">
+    <%= f.check_box :swimming_pool %>
+    <%= f.label :swimming_pool %>
+  </div>
+  <div class="field">
+    <%= f.check_box :pa_system %>
+    <%= f.label :pa_system %>
+  </div>
+  <div class="field">
+    <%= f.check_box :bar %>
+  </div>
+
+  <div class="field">
+    <% @facility_layouts.each do |facility_layout| %>
+      <%= f.check_box :facility_layouts, { multiple: true }, facility_layout, false %>
+      <%= f.number_field :capacity, { multiple: true } %>
+      <%= f.label facility_layout %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -12,4 +12,21 @@
  *
  *= require_tree .
  *= require_self
+ *= require toastr
  */
+
+ .center-cropped {
+   height: 400px;
+   background-position: center center;
+   background-repeat: no-repeat;
+ }
+ .card-image {
+   height: 200px;
+   background-position: center center;
+   background-repeat: no-repeat;
+ }
+ .thumb-image {
+   height: 70px;
+   background-position: center center;
+   background-repeat: no-repeat;
+ }

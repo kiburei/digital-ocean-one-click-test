@@ -8,7 +8,13 @@
         <!--RD Navbar Panel-->
         <div class="rd-navbar-top-panel">
           <div class="rd-navbar-top-panel-wrap">
-            <div class="login"><a href="register.html"><span class="fa-user"></span> Login/Registration</a></div>
+            <% if hotel_signed_in? %>
+                <%= link_to "Edit Hotel", edit_hotel_registration_path %>/
+                <div class="login"><%= link_to "Logout", destroy_hotel_session_path,method: :delete, class: "fa-user" %></div>/
+            <% else %>
+                <div class="login"><%= link_to "Login", hotel_session_path, class: "fa-user" %></div>/
+            <% end %>
+            <div class="login"><%= link_to "Registration", new_hotel_registration_path, class: "fa-user" %></div>
             <div class="contact-info"><a href="callto:#"><span class="material-icons-local_phone"></span> +254-723-858-383</a><a href="mailto:info@meetinafrica.com"><span class="material-icons-drafts"></span> info@meetinafrica.com</a></div>
             <div class="slogan">
               <p>Professional realtor works for you</p>
@@ -31,7 +37,7 @@
             <!-- RD Navbar Brand-->
             <div class="rd-navbar-brand"><a href="index.html" class="brand-name"><%= image_tag 'meet-in-africa-logo.png', size: "200x50", alt: 'Meet In Africa Logo' %></a></div>
           </div>
-          <div class="btn-group"><a href="add-facility.html" class="btn btn-sm btn-primary">Add Facility</a></div>
+          <div class="btn-group"><%= link_to "Add Facility", new_facility_path(current_hotel), class: "btn btn-sm btn-primary" %></div>
           <div class="rd-navbar-nav-wrap">
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
@@ -78,36 +84,19 @@
     <!--Swiper-->
     <div data-height="" data-min-height="600px" class="swiper-container swiper-slider">
       <div class="swiper-wrapper">
-        <div data-slide-bg="http://wamiori.com/meet/images/slide-1.jpg" class="swiper-slide">
-          <div class="swiper-slide-caption">
-            <div class="container">
-              <p data-caption-animate="fadeInDown" class="h1">Sarova Panafric - Kiboko Hall</p>
-              <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">This is a conference facility located in Nairobi CBD<br>
-                along Valley Road that can accomodate up to 50 people.</p>
-              <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>
-              <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
-          </div>
-        </div>
-        <div data-slide-bg="http://wamiori.com/meet/images/slide-2.jpg" class="swiper-slide">
-          <div class="swiper-slide-caption">
-            <div class="container">
-              <p data-caption-animate="fadeInDown" class="h1">Voyager Beach Hotel - Conference A</p>
-              <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">If you are looking to have a conference facilty<br>
-                with a view of the beach then look no further. Capacity of Up to 200 people.</p>
-              <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$216.00<span>/day</span></div>
-              <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
-          </div>
-        </div>
-        <div data-slide-bg="http://wamiori.com/meet/images/slide-3.jpg" class="swiper-slide">
-          <div class="swiper-slide-caption">
-            <div class="container">
-              <p data-caption-animate="fadeInDown" class="h1">Dusit Hotel - Conference Hall B</p>
-              <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5">Class always speaks for itself and leaves you with a wonderful<br>
-                experience after the conference. Welcome!</p>
-              <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$239.00<span>/day</span></div>
-              <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
-          </div>
-        </div>
+        <% @hotels.each do |hotel| %>
+            <div data-slide-bg="http://wamiori.com/meet/images/slide-1.jpg" class="swiper-slide">
+              <div class="swiper-slide-caption">
+                <div class="container">
+                  <% facility = Facility.last %>
+                  <p data-caption-animate="fadeInDown" class="h1"><%= hotel.name %> - <%=   facility.name  %></p>
+                  <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5" style="padding-right: 500px;"><%= facility.description %></p>
+                  <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price">$309.00<span>/day</span></div>
+                  <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
+              </div>
+            </div>
+        <% end %>
+
       </div>
       <!-- Swiper Pagination-->
       <div class="swiper-pagination"></div>
@@ -249,14 +238,14 @@
               <div class="category-content">
                 <h4>Cocktail</h4>
                 <p>101 Results</p>
-                <a href="property-catalog-single.html" class="btn btn-sm btn-primary">More details</a> </div>
+                <%= link_to "More details", static_single_facility_path, class: "btn btn-sm btn-primary" %> </div>
             </div>
             <div class="category">
               <%= image_tag 'index-2.jpg', size: "370x250" %>
               <div class="category-content">
                 <h4>Classroom</h4>
                 <p>101 Results</p>
-                <a href="property-catalog-single.html" class="btn btn-sm btn-primary">More details</a> </div>
+                <%= link_to "More details", static_single_facility_path, class: "btn btn-sm btn-primary" %> </div>
             </div>
           </div>
           <div class="cell-sm-6 cell-md-4 cell-md-push-3">

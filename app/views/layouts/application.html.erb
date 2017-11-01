@@ -28,10 +28,104 @@
     <![endif]-->
 
   </head>
+    <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fullwidth" data-md-layout="rd-navbar-fullwidth" data-lg-layout="rd-navbar-fullwidth" data-device-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fullwidth" data-stick-up-offset="100px">
+      <!--RD Navbar Panel-->
+      <div class="rd-navbar-inner inner-wrap">
+        <div class="rd-navbar-panel">
+          <!-- RD Navbar Toggle-->
+          <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
+          <!-- RD Navbar Brand-->
+          <div class="rd-navbar-brand"><a href="/" class="brand-name"><%= image_tag 'meet-in-africa-logo.png', size: "200x50", alt: 'Meet In Africa Logo' %></a></div>
+        </div>
+        <% if hotel_signed_in? %>
+          <div class="btn-group"><%= link_to "Add Facility", new_facility_path(current_hotel), class: "btn btn-sm btn-primary" %></div>
+        <% end %>
+        <div class="rd-navbar-nav-wrap">
+          <!-- RD Navbar Nav-->
+          <ul class="rd-navbar-nav">
+            <li><%= link_to "Home", root_path, class: "active" %></li>
 
+            <li><a href="#">Facility</a>
+              <ul class="rd-navbar-dropdown">
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="property-catalog-list.html">Facility catalog list</a></li>
+                <li><a href="property-catalog-single.html">View Single Facility</a></li>
+                <li><a href="add-facility.html">Add Facility</a></li>
+              </ul>
+            </li>
+
+            <!-- Total booking of Current Hotel -->
+
+            <li><a href="#">User/Owner
+              <% if hotel_signed_in? %>
+              <% count = 0 %>
+              <% current_hotel.facilities.each do |facility| %>
+              <% count += facility.bookings.count %>
+              <% end %>
+                <span class="badge"><%= count %></span>
+              <% end %>
+            </a>
+              <ul class="rd-navbar-dropdown">
+                <% if hotel_signed_in? || user_signed_in? %>
+                  <li><%= link_to "Logout", destroy_hotel_session_path,method: :delete%></li>
+                  <li><%= if hotel_signed_in? then link_to "Dashboard", hotel_path(current_hotel) end %></li>
+                <% else %>
+                  <li><%= link_to "Login as User", user_session_path %></li>
+                  <li><%= link_to "User Registration", new_user_registration_path %></li>
+                  <li><%= link_to "Login as Hotel", hotel_session_path %></li>
+                  <li><%= link_to "Hotel Registration", new_hotel_registration_path %></li>
+                <% end %>
+              </ul>
+            </li>
+
+
+            <li><a href="contact_us.html">Contact Us</a></li>
+
+            <!-- To Go to Footer Menu-->
+            <li><a href="#">Footer Menu</a>
+              <ul class="rd-navbar-dropdown">
+                <li><a href="about.html">About</a></li>
+                <li><a href="our-team.html">Our Team</a></li>
+                <li><a href="terms.html">Terms of Use</a></li>
+              </ul>
+            </li>
+
+            <li class="link-group"><a href="callto:#"><span class="icon icon-xxs-mod-1 material-icons-local_phone"></span> +254-723-858-383</a><a href="mailto:#"><span class="icon icon-xxs-mod-1 material-icons-drafts"></span> info@meetinafrica.com</a><a href="register.html"><span class="icon icon-xxs-mod-1 fa-user"></span> Login/Registration</a><a href="add-facility.html" class="btn btn-sm btn-primary">Add Conference Facility</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   <body>
     <%= yield %>
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+        toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+      </script>
+    <% end %>
     <%= javascript_include_tag 'script', 'data-turbolinks-track': 'reload', :recursive => true  %>
     <%= javascript_include_tag 'core.min', 'data-turbolinks-track': 'reload', :recursive => true  %>
   </body>
+  <footer class="page-foot text-center text-md-left bg-gray">
+    <div class="container-fluid">
+      <div class="footer-wrap">
+        <div class="rd-navbar-brand"><a href="/" class="brand-name">Meet in<br><span>Africa</span></a></div>
+        <ul class="list-inline">
+          <li><a href="#" class="fa-facebook"></a></li>
+          <li><a href="#" class="fa-twitter"></a></li>
+          <li><a href="#" class="fa-pinterest-p"></a></li>
+          <li><a href="#" class="fa-vimeo"></a></li>
+          <li><a href="#" class="fa-google"></a></li>
+          <li><a href="#" class="fa-rss"></a></li>
+        </ul>
+        <div class="copyright">
+          <p>&#169;<span id="copyright-year"></span> All Rights Reserved <a href="terms.html">Terms of Use and Privacy Policy</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </html>

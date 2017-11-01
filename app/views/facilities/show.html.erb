@@ -1,0 +1,179 @@
+
+<section class="section-sm section-sm-mod-2">
+  <div class="container">
+    <h2><%= @facility.name %>, <%= link_to @facility.hotel.name, hotel_path(@facility.hotel) %>, <%= @facility.hotel.city %></h2>
+    <% if @facility.hotel == current_hotel %>
+      <%= link_to "Edit Listing", edit_facility_path %>
+    <% end %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <% if @facility.photos.any? %>
+          <div data-lightbox="gallery" class="product-carousel">
+            <!-- Slick Carousel-->
+            <div class="carousel-slider slider">
+              <% @facility.photos.each do |photo| %>
+                <div class="item"><a href="images/catalog_single-1_original.jpg" data-lightbox="image">
+                  <div class="center-cropped">
+                    <%= image_tag photo.image.url, size: "370x250" %></a>
+                  </div>
+                </div>
+              <% end %>
+
+
+            </div>
+            <div class="carousel-thumbnail slider">
+              <% @facility.photos.each do |photo| %>
+                <div class="item"><%= image_tag photo.image.url, class: "thumb-image" %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to "add facility photos", new_photo_path(@facility) %>
+        <div class="row">
+          <div class="col-xs-12">
+            <h4>Description</h4>
+            <p><%= @facility.description %></p>
+            <div class="table-responsive">
+              <table class="table">
+                <colgroup>
+                  <col class="col-xs-3">
+                  <col class="col-xs-3">
+                </colgroup>
+                <thead>
+                <tr class="bg-gray">
+                  <th colspan="2">Conference Facility Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Hotel</td>
+                  <td><%= @facility.hotel.name %></td>
+                </tr>
+                <tr>
+                  <td>Location</td>
+                  <td><%= @facility.hotel.city %></td>
+                </tr>
+                <tr>
+                  <td>Internet</td>
+                  <td><%= @facility.internet %></td>
+                </tr>
+                <tr>
+                  <td>Parking</td>
+                    <% if @facility.parking == true %>
+                      <td>Available</td>
+                    <% else %>
+                      <td>Not Available</td>
+                    <% end %>
+                </tr>
+                <tr>
+                  <td>Accomodation Available</td>
+                    <% if @facility.accomodation == true %>
+                      <td><%= @facility.hotel.hotel_manager_first_name %> <%= @facility.hotel.hotel_manager_phone %> </td>
+                    <% else %>
+                      <td>Not Available</td>
+                    <% end %>
+                </tr>
+                <tr>
+                  <td>Swimming Pool</td>
+                  <% if @facility.swimming_pool == true %>
+                    <td>Available</td>
+                  <% else %>
+                    <td>Not Available</td>
+                  <% end %>
+                </tr>
+                <tr>
+                  <td>Public Adress System</td>
+                  <% if @facility.pa_system == true %>
+                    <td>Available</td>
+                  <% else %>
+                    <td>Not Available</td>
+                  <% end %>
+                </tr>
+                <tr>
+                  <td>Bar</td>
+                  <% if @facility.bar == true %>
+                    <td>Available</td>
+                  <% else %>
+                    <td>Not Available</td>
+                  <% end %>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <colgroup>
+                  <col class="col-xs-4">
+                  <col class="col-xs-2">
+                  <col class="col-xs-2">
+                </colgroup>
+                <thead>
+                <tr class="bg-gray">
+                  <th colspan="3">Conference Facility Capacity</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% i = 0 %>
+                    <% @facility.facility_layouts.split(" ").length.times do |orientation| %>
+                        <tr>
+                          <td><%= @facility.facility_layouts.split(" ")[i] %>
+                          <td>Max Capacity: <%= @facility.capacity.split(" ")[i] %></td></td>
+                        </tr>
+                      <% i += 1 %>
+                    <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="catalog-sidebar range">
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-2">
+            <% i = 0 %>
+              <% @facility.facility_layouts.split(" ").length.times do |orientation| %>
+                <div class="col-md-6" style="font-size: 15px;">
+                  <span class="icon icon-sm icon-darker hotel-icon-10"></span><%= @facility.facility_layouts.split(" ")[i] %> - <%= @facility.capacity.split(" ")[i] %>
+                </div>
+                <% i += 1 %>
+              <% end %>
+          </div>
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-3">
+            <div class="price">
+              <p class="small">Price</p>
+              <p><span class="h4"><%= number_to_currency(@facility.price - (@facility.price * 0.09) , :unit => "kes") %>/day</span><span class="h6 text-darker">
+                    <del><%= number_to_currency(@facility.price , :unit => "kes") %>/day</del>
+                </span>
+                </p>
+              <div class="btn-group-isotope"><%= link_to "Book Facility", new_booking_path, class: "btn btn-primary btn-primary-transparent btn-md btn-min-width-lg" %></div>
+            </div>
+          </div>
+
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-4">
+            <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@facility.hotel.latitude}%2C#{@facility.hotel.longitude}" %>
+
+            <h3>Nearby locations</h3>
+            <ul>
+            <% for hotel in @facility.hotel.nearbys(10) %>
+              <li><%= link_to hotel.name, hotel %> (<%= hotel.distance.round(2) %> miles)</li>
+            <% end %>
+            </ul>
+          </div>
+
+          <div class="sidebar-module cell-sm-6 cell-md-12 cell-md-push-7">
+            <h4>Facility Owner</h4>
+            <div class="media media-mod-3">
+              <div class="media-left round img-width-auto">
+              </div>
+              <div class="media-body">
+                <h6 class="text-primary"><%= @facility.hotel.name %></h6>
+                <p class="small text-darker"><%= @facility.hotel.name %></p><a href="callto:#" class="text-bold"><%= @facility.hotel.phone %></a>
+              </div>
+            </div>
+            <%= link_to "View Profile", hotel_path(@facility.hotel), class: "btn btn-primary btn-primary-transparent btn-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
