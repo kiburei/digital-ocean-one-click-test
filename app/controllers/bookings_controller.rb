@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
-    if user_signed_in?
       @booking = Booking.new(booking_params)
       @facility = Facility.find(booking_params[:facility_id])
       respond_to do |format|
@@ -12,9 +12,6 @@ class BookingsController < ApplicationController
           format.html { redirect_to @facility, notice: "An error occured" }
         end
       end
-    else
-      redirect_to new_user_session_path, notice: "Please sign in to make a booking"
-    end
   end
 
   private
