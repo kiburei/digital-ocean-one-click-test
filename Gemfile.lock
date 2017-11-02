@@ -234,7 +234,7 @@ DEPENDENCIES
   omniauth-google
   pg (~> 0.18)
   puma (~> 3.0)
-  rails (~> 5.0.1, >= 5.0.0.1)
+  rails (~> 5.0.1)
   rails_12factor
   sass-rails (~> 5.0)
   spring

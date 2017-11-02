@@ -46,7 +46,7 @@
           <div class="row">
             <div class="col-sm-4">
               <label for="">Hotel</label>
-              <%= select_tag :hotel, options_for_select(["Select Hotel"].push(Hotel.uniq.pluck(:name))) %>
+              <%= select_tag :hotel, options_for_select(["Select Hotel"].push(Hotel.distinct.pluck(:name))) %>
             </div>
             <div class="col-sm-4">
               <label for="select-8">No of People</label>
