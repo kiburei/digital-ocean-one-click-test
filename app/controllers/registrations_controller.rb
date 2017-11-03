@@ -2,6 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :set_hotel, only: [:show]
 
   def show
+    @hotels = Hotel.all
     @facilities = @hotel.facilities
     @max = 0
     @facilities.each do |facility|
