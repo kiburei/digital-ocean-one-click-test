@@ -1,8 +1,13 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
 
+  def user_bookings
+    @bookings = Booking.where("user_id =?", current_user)
+  end
+
   def create
       @booking = Booking.new(booking_params)
+      @booking.user_id = current_user.id
       @facility = Facility.find(booking_params[:facility_id])
       respond_to do |format|
         if @booking.save
