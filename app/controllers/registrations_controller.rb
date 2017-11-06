@@ -5,12 +5,15 @@ class RegistrationsController < Devise::RegistrationsController
     @hotels = Hotel.all
     @facilities = @hotel.facilities
     @max = 0
+    @bookings = []
     @facilities.each do |facility|
+      @bookings.push(facility.bookings)
       facility.capacity.split(" ").each do |cap|
         if cap.to_i > @max
           @max = cap.to_i
         end
       end
+      @bookings
       @max
     end
   end

@@ -4,6 +4,12 @@
 <% end %>
 <p><%= @hotel.description %></p>
 <p>Meeting rooms: <%= @hotel.facilities.count %></p>
+<h6>Bookings</h6>
+<% @bookings.each do |booking| %>
+  <% i = 0 %>
+  <li> <%= booking[i].facility.name %> -- <%= booking[i].layout %> -- <%= booking[i].guests %> </li>
+  <% i += 1 %>
+<% end %>
 <h6>Capacity Range</h6>
 <p>Up to <%= @max %> </p>
 <h6>Location</h6>

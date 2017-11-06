@@ -1,1 +1,8 @@
-<%= @bookings.count %>
+<% @bookings.each do |booking| %>
+  <li>
+    <%= booking.facility.hotel.name %> --
+    <%= booking.facility.name %> --
+    <%= booking.layout %> --
+    <%= booking.guests %>
+  </li>
+<% end %>

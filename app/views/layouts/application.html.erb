@@ -48,7 +48,8 @@
         <% end %>
         <% if user_signed_in? %>
         <div class="btn-group">
-          <%= link_to "Reservations", user_bookings_path, class: "btn btn-sm btn-primary" %>
+          <% rsvps = current_user.bookings.count %>
+          <%= link_to "Reservations #{rsvps} ", user_bookings_path, class: "btn btn-sm btn-primary" %>
         </div>
         <% end %>
       </div>
