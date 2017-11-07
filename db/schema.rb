@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106070237) do
+ActiveRecord::Schema.define(version: 20171107061422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20171106070237) do
     t.datetime "updated_at",  null: false
     t.integer  "facility_id"
     t.integer  "user_id"
+    t.date     "start"
+    t.date     "end"
+    t.boolean  "status"
+    t.date     "event_date"
+    t.string   "time_of_day"
     t.index ["facility_id"], name: "index_bookings_on_facility_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
