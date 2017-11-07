@@ -3,6 +3,9 @@
     <%= booking.facility.hotel.name %> --
     <%= booking.facility.name %> --
     <%= booking.layout %> --
-    <%= booking.guests %>
+    <%= booking.guests %> --
+    <%= booking.event_date %> --
+    <%= booking.time_of_day %>
+    <%= social_share_button_tag(booking.facility.hotel.name, :allow_sites => %w(twitter facebook google_plus email linkedin)) %>
   </li>
 <% end %>

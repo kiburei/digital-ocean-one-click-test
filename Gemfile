@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+
+# Share on Social Media
+gem 'social-share-button'
 # Admin Dashboard and support
 gem 'activeadmin'
 gem 'cancan' # or cancancan

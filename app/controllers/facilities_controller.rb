@@ -4,23 +4,11 @@ class FacilitiesController < ApplicationController
   # GET /facilities
   # GET /facilities.json
   def index
-    @facilities = Facility.all
     @swiper = Facility.all
     @facility_layouts = ['U-Shape', 'Classroom', 'Theatre', 'Lawn', 'Board-Room', 'Round-Table', 'Cocktail']
     # Last x facilities to be added
-    @recent = Facility.last(6).reverse
   end
 
-  def category
-    @facilities = Facility.all
-    @orientation = []
-    @facilities.each do |facility|
-      if facility.facility_layouts.include? params[:format]
-        @orientation.push(facility)
-      end
-      @orientation
-    end
-  end
 
   def filter
     redirect_to :action => "results", :county => params[:county], :range_1 => params[:range_1], :range_2 => params[:range_2], :capacity => params[:capacity], :layout => params[:layout]
