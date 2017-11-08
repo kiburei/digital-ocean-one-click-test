@@ -1,11 +1,26 @@
-<% @bookings.each do |booking| %>
-  <li>
-    <%= booking.facility.hotel.name %> --
-    <%= booking.facility.name %> --
-    <%= booking.layout %> --
-    <%= booking.guests %> --
-    <%= booking.event_date %> --
-    <%= booking.time_of_day %>
-    <%= social_share_button_tag(booking.facility.hotel.name, :allow_sites => %w(twitter facebook google_plus email linkedin)) %>
-  </li>
-<% end %>
+<table class="table" >
+  <tr>
+    <th>Hotel</th>
+    <th>Facility</th>
+    <th>Layout</th>
+    <th>No of Guests</th>
+    <th>No of Guests Confrimed</th>
+    <th>Date and Time</th>
+    <th>Status</th>
+    <th>Invite</th>
+  </tr>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.facility.hotel.name %></td>
+        <td><%= booking.facility.name %></td>
+        <td><%= booking.layout %></td>
+        <td><%= booking.guests %></td>
+        <td></td>
+        <td><%= booking.event_date %> <%= booking.time_of_day %></td>
+        <td></td>
+        <td><%= social_share_button_tag(booking.facility.hotel.name, :allow_sites => %w(google_plus email linkedin)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

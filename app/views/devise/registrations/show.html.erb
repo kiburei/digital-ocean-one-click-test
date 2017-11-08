@@ -5,11 +5,31 @@
 <p><%= @hotel.description %></p>
 <p>Meeting rooms: <%= @hotel.facilities.count %></p>
 <h6>Bookings</h6>
-<% @bookings.each do |booking| %>
-  <% i = 0 %>
-  <li> <%= booking[i].facility.name %> -- <%= booking[i].layout %> -- <%= booking[i].guests %> </li>
-  <% i += 1 %>
-<% end %>
+<table class="table" >
+  <tr>
+    <th>Hotel</th>
+    <th>Facility</th>
+    <th>Layout</th>
+    <th>No of Guests</th>
+    <th>No of Guests Confrimed</th>
+    <th>Date and Time</th>
+    <th>Status</th>
+  </tr>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.facility.hotel.name %></td>
+        <td><%= booking.facility.name %></td>
+        <td><%= booking.layout %></td>
+        <td><%= booking.guests %></td>
+        <td></td>
+        <td><%= booking.event_date %> <%= booking.time_of_day %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <h6>Capacity Range</h6>
 <p>Up to <%= @max %> </p>
 <h6>Location</h6>
