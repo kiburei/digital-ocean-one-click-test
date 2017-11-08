@@ -1,5 +1,12 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:user_bookings, :create]
+  before_action :set_booking, only: [:reserve]
+
+  def reserve
+    # Set status of booked facility to true
+    @booking.update(status: true)
+    redirect_to hotel_path(current_hotel)
+  end
 
   def user_bookings
     @bookings = Booking.where("user_id =?", current_user)

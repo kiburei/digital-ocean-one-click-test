@@ -24,7 +24,11 @@
         <td><%= booking.guests %></td>
         <td></td>
         <td><%= booking.event_date %> <%= booking.time_of_day %></td>
-        <td></td>
+        <% if booking.status == false %>
+          <td><%= link_to "Reserve Facility", reserve_path(booking) %></td>
+        <% else %>
+          <td><%= link_to "Reserved" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get "user_bookings" => "bookings#user_bookings", as: :user_bookings
 
+  get "reserve/:id" => "bookings#reserve", as: :reserve
+
   root 'facilities#index'
 
   get 'static/index'

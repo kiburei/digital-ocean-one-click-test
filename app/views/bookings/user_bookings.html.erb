@@ -4,7 +4,7 @@
     <th>Facility</th>
     <th>Layout</th>
     <th>No of Guests</th>
-    <th>No of Guests Confrimed</th>
+    <!-- <th>No of Guests Confrimed</th> -->
     <th>Date and Time</th>
     <th>Status</th>
     <th>Invite</th>
@@ -16,9 +16,13 @@
         <td><%= booking.facility.name %></td>
         <td><%= booking.layout %></td>
         <td><%= booking.guests %></td>
-        <td></td>
+        <!-- <td></td> -->
         <td><%= booking.event_date %> <%= booking.time_of_day %></td>
-        <td></td>
+        <% if booking.status == true %>
+          <td>Reserved</td>
+        <% else %>
+          <td>Pending</td>
+        <% end %>
         <td><%= social_share_button_tag(booking.facility.hotel.name, :allow_sites => %w(google_plus email linkedin)) %></td>
       </tr>
     <% end %>
