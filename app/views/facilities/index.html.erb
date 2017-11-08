@@ -33,8 +33,8 @@
               <%= text_field_tag :county, @params %>
             </div>
             <div class="col-sm-4">
-              <label for="">Layout</label>
-                <%= select_tag :layout, options_for_select(["Select Layout"].concat(@facility_layouts), :select) %>
+              <label for="">Area</label>
+                <%= text_field_tag :area %>
             </div>
             <div class="col-sm-4">
               <label>Max Price</label>
@@ -49,8 +49,8 @@
               <%= select_tag :hotel, options_for_select(["Select Hotel"].push(Hotel.distinct.pluck(:name))) %>
             </div>
             <div class="col-sm-4">
-              <label for="select-8">No of People</label>
-              <%= number_field_tag :capacity %>
+              <label for="">Layout</label>
+                <%= select_tag :layout, options_for_select(["Select Layout"].concat(@facility_layouts), :select) %>
             </div>
             <div class="col-sm-4">
               <label>Min Price</label>

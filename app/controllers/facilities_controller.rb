@@ -11,7 +11,7 @@ class FacilitiesController < ApplicationController
 
 
   def filter
-    redirect_to :action => "results", :county => params[:county], :range_1 => params[:range_1], :range_2 => params[:range_2], :capacity => params[:capacity], :layout => params[:layout]
+    redirect_to :action => "results", :county => params[:county], :range_1 => params[:range_1], :range_2 => params[:range_2], :capacity => params[:capacity], :layout => params[:layout], :area => params[:area]
   end
 
   def results
@@ -21,7 +21,7 @@ class FacilitiesController < ApplicationController
     @filtered = []
     @facilities = Facility.all
     @facilities.each do |facility|
-        if (facility.hotel.city == filter_params[:county]) || (facility.facility_layouts.include? filter_params[:layout]) || (range.include? facility.price.to_i) || (facility.capacity.split(" ").include? filter_params[:capacity])
+        if (facility.hotel.city == filter_params[:county]) || (facility.facility_layouts.include? filter_params[:layout]) || (range.include? facility.price.to_i) || (facility.capacity.split(" ").include? filter_params[:capacity]) || (facility.hotel.area == filter_params[:area])
           @filtered.push(facility)
         end
         @filtered
@@ -112,6 +112,6 @@ class FacilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def facility_params
-      params.require(:facility).permit(:name, :hotel_id, :price, :internet, :parking, :accomodation, :swimming_pool, :pa_system, :bar, :capacity => [], :facility_layouts => [])
+      params.require(:facility).permit(:name, :hotel_id, :price, :internet, :parking, :accomodation, :swimming_pool, :pa_system, :bar, :area, :capacity => [], :facility_layouts => [])
     end
 end
