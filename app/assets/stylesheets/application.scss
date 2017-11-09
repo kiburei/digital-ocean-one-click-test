@@ -15,7 +15,7 @@
  *= require toastr
  *= require social-share-button
  */
-
+// Image styling
  .center-cropped {
    height: 400px;
    background-position: center center;
@@ -30,4 +30,11 @@
    height: 70px;
    background-position: center center;
    background-repeat: no-repeat;
+ }
+
+ // Login and Sign up forms
+ .auth {
+   text-align: center;
+   padding: 30%;
+   padding-top: 10px;
  }
