@@ -21,6 +21,10 @@
     <%= f.date_select :event_date %>
   </div>
   <div class="field">
+    <%= f.label :end %>
+    <%= f.date_select :end %>
+  </div>
+  <div class="field">
     <%= f.select :time_of_day, options_for_select(["Morning Hours", "Afternoon Hours", "Evening Hours"], :selected) %>
     <%= f.label :time_of_day %>
   </div>
@@ -28,6 +32,10 @@
   <div class="field">
     <%= f.select :layout, options_for_select(@facility.facility_layouts.split(" "), :selected) %>
     <%= f.label :layout %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes, placeholder: "Enter any special conditions" %>
   </div>
 
   <div class="actions">

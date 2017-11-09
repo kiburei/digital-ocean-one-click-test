@@ -14,11 +14,12 @@
     <th>No of Guests Confrimed</th>
     <th>Date and Time</th>
     <th>Status</th>
+    <th>Notes</th>
   </tr>
   <tbody>
     <% @bookings.each do |booking| %>
       <tr>
-        <td><%= booking.facility.hotel.name %></td>
+        <td><%= booking.user.name %></td>
         <td><%= booking.facility.name %></td>
         <td><%= booking.layout %></td>
         <td><%= booking.guests %></td>
@@ -29,6 +30,7 @@
         <% else %>
           <td><%= link_to "Reserved" %></td>
         <% end %>
+        <td><%= booking.notes %></td>
       </tr>
     <% end %>
   </tbody>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108131005) do
+ActiveRecord::Schema.define(version: 20171109075912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,11 +53,11 @@ ActiveRecord::Schema.define(version: 20171108131005) do
     t.datetime "updated_at",                  null: false
     t.integer  "facility_id"
     t.integer  "user_id"
-    t.date     "start"
     t.date     "end"
     t.date     "event_date"
     t.string   "time_of_day"
     t.boolean  "status",      default: false
+    t.text     "notes"
     t.index ["facility_id"], name: "index_bookings_on_facility_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20171108131005) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
