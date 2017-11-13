@@ -18480,7 +18480,7 @@ a:hover {
 }
 
 .bg-image-1 {
-  background-image: url("../images/extras-1.jpg");
+  background-image: url("http://mutuamatheka.co.ke/wp-content/uploads/2012/04/001_NAIROBI_WEBREADY_MUTUA-MATHEKA-11.jpg");
 }
 
 .bg-image-1:after {
@@ -24664,7 +24664,7 @@ img.mfp-img {
   padding-top: 0;
 }
 
-/* 
+/*
  *  Owl Carousel - Animate Plugin
  */
 .owl-carousel .animated {
@@ -24705,7 +24705,7 @@ img.mfp-img {
   }
 }
 
-/* 
+/*
  * 	Owl Carousel - Auto Height Plugin
  */
 .owl-height {
@@ -24716,7 +24716,7 @@ img.mfp-img {
   transition: height 500ms ease-in-out;
 }
 
-/* 
+/*
  *  Core Owl Carousel CSS File
  */
 .owl-carousel {
@@ -24866,7 +24866,7 @@ img.mfp-img {
   display: block;
 }
 
-/* 
+/*
  * 	Owl Carousel - Lazy Load Plugin
  */
 .owl-carousel .owl-item .owl-lazy {
@@ -24878,7 +24878,7 @@ img.mfp-img {
   transition: opacity 400ms ease;
 }
 
-/* 
+/*
  * 	Owl Carousel - Video Plugin
  */
 .owl-carousel .owl-video-wrapper {
@@ -25615,7 +25615,7 @@ img.mfp-img {
   color: #000;
   height: 50px;
   width: 250px;
-  
+
 }
 
 .rd-navbar-brand > * {
