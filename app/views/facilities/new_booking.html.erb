@@ -1,44 +1,47 @@
-<h1>Book This Facility</h1>
+<div style="padding-left: 30px;">
+  <h1>Book This Facility</h1>
 
-<%= form_for(@booking, url: facility_bookings_path(@facility) ) do |f| %>
-  <% if @booking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this facility from being saved:</h2>
+  <%= form_for(@booking, url: facility_bookings_path(@facility) ) do |f| %>
+    <% if @booking.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this facility from being saved:</h2>
 
-      <ul>
-      <% @booking.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @booking.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :guests %>
+      <%= f.number_field :guests %>
+    </div>
+    <div class="field">
+      <%= f.label :event_date %>
+      <%= f.date_select :event_date %>
+    </div>
+    <div class="field">
+      <%= f.label :end %>
+      <%= f.date_select :end %>
+    </div>
+    <div class="field">
+      <%= f.select :time_of_day, options_for_select(["Morning Hours", "Afternoon Hours", "Evening Hours"], :selected) %>
+      <%= f.label :time_of_day %>
+    </div>
+    <%= f.hidden_field :facility_id, value: @facility.id %>
+    <div class="field">
+      <%= f.select :layout, options_for_select(@facility.facility_layouts.split(" "), :selected) %>
+      <%= f.label :layout %>
+    </div>
+    <div class="field">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, placeholder: "Enter any special conditions" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :guests %>
-    <%= f.number_field :guests %>
-  </div>
-  <div class="field">
-    <%= f.label :event_date %>
-    <%= f.date_select :event_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end %>
-    <%= f.date_select :end %>
-  </div>
-  <div class="field">
-    <%= f.select :time_of_day, options_for_select(["Morning Hours", "Afternoon Hours", "Evening Hours"], :selected) %>
-    <%= f.label :time_of_day %>
-  </div>
-  <%= f.hidden_field :facility_id, value: @facility.id %>
-  <div class="field">
-    <%= f.select :layout, options_for_select(@facility.facility_layouts.split(" "), :selected) %>
-    <%= f.label :layout %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %>
-    <%= f.text_area :notes, placeholder: "Enter any special conditions" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
