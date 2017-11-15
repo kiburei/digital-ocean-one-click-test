@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
     @bookings = []
     @facilities.each do |facility|
       if facility.bookings.any?
-        facility.bookings.each { |booking| @bookings.push(booking) }
+        facility.bookings.each { |booking| if booking.event_date > Date.today then @bookings.push(booking) end }
       end
       facility.capacity.split(" ").each do |cap|
         if cap.to_i > @max

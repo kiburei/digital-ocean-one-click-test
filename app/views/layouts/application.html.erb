@@ -33,11 +33,14 @@
             <!-- RD Navbar Toggle-->
             <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
             <!-- RD Navbar Brand-->
-            <div class="rd-navbar-brand"><a href="index.html" class="brand-name"><%= image_tag "meet-in-africa-logo.png" %></a></div>
+            <div class="rd-navbar-brand"><a href="/" class="brand-name"><%= image_tag "meet-in-africa-logo.png" %></a></div>
           </div>
           <div class="btn-group">
             <% if user_signed_in? %>
               <%= link_to "Log Out", destroy_hotel_session_path, :method => :delete, class: "btn btn-sm btn-primary" %>
+              <% if current_user.bookings.any? %>
+                <%= link_to "You have #{current_user.bookings.count} bookings", user_bookings_path, class: "btn btn-sm btn-primary" %>
+              <% end %>
             <% else %>
             <% if hotel_signed_in? == false %>
               <%= link_to "Log In", new_user_session_path, class: "btn btn-sm btn-primary" %>
@@ -46,6 +49,7 @@
             <% end %>
             <% if hotel_signed_in? %>
               <%= link_to "Add Facility", new_facility_path, class: "btn btn-sm btn-primary" %>
+              <%= link_to "My Hotel", hotel_path(current_hotel), class: "btn btn-sm btn-primary" %>
               <%= link_to "Log Out", destroy_hotel_session_path, :method => :delete, class: "btn btn-sm btn-primary" %>
             <% end %>
           </div>

@@ -16,10 +16,11 @@
         <!--Section Description-->
         <section class="section-sm bg-dark">
           <div class="container">
-            <div class="row">
+            <div class="row" style="padding-top: 25px;">
               <div class="col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-4 inset-8">
-                <div class="img-wrap-mod-1"><%= image_tag @hotel.logo %></div><a href="appointment.html" class="btn btn-sm btn-primary btn-full-width">Make an appointment</a>
-                <ul class="list-unstyled list-unstyled-mod-1">
+                <div class="img-wrap-mod-1"><%= image_tag @hotel.logo %></div>
+                <!-- <a href="appointment.html" class="btn btn-sm btn-primary btn-full-width">Make an appointment</a> -->
+                <ul class="list-unstyled list-unstyled-mod-1"  style="padding-top: 10px;">
                   <li><a href="callto:#"><span class="material-icons-local_phone icon icon-xxs-mod-1 text-primary"></span><%= @hotel.phone %></a></li>
                   <li><a href="callto:#"><span class="material-icons-local_phone icon icon-xxs-mod-1 text-primary"></span><%= @hotel.hotel_manager_phone %></a></li>
                   <li><a href="mailto:#"><span class="material-icons-drafts icon icon-xxs-mod-1 text-primary"></span><%= @hotel.email %></a></li>
@@ -38,7 +39,32 @@
             </div>
           </div>
         </section>
-        <!--Section Jessica Davidson’s Properties-->
+        <section class="section-sm">
+            <table class="table">
+              <thead>
+                <th>Facility</th>
+                <th>Client</th>
+                <th>Guests</th>
+                <th>Date</th>
+                <th>Status</th>
+              </thead>
+              <tbody>
+                <% @bookings.each do |booking| %>
+                <tr>
+                  <td><%= booking.facility.name %></td>
+                  <td><%= booking.user.name %></td>
+                  <td><%= booking.guests %></td>
+                  <td><%= booking.event_date %></td>
+                  <% if booking.status == true %>
+                    <td><label class="label label-success">Paid</label></td>
+                  <% else %>
+                    <td><label class="label label-warning">Pending</label></td>
+                  <% end %>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+        </section>
         <section class="section-sm">
           <div class="container text-center text-sm-left">
             <h2>Hotel's Meeting Facilites</h2>
