@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+# Use thin in place of webrick
+gem 'thin'
 # Share on Social Media
 gem 'social-share-button'
 # Admin Dashboard and support
