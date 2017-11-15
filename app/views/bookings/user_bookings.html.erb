@@ -19,9 +19,9 @@
         <!-- <td></td> -->
         <td><%= booking.event_date %> <%= booking.time_of_day %></td>
         <% if booking.status == true %>
-          <td>Reserved</td>
+          <td><label class="label label-success">Reserved</label></td>
         <% else %>
-          <td>Pending</td>
+          <td><label class="label label-warning">Pending</label></td>
         <% end %>
         <td><%= social_share_button_tag(booking.facility.hotel.name, :allow_sites => %w(google_plus email linkedin)) %></td>
       </tr>
