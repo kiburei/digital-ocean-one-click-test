@@ -8,10 +8,15 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: rails
+  password:
 
 development:
   <<: *default
   database: meet_in_africa_development
+  username: rails
+  password:
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,7 +24,12 @@ development:
 test:
   <<: *default
   database: meet_in_africa_test
+  username: rails
+  password:
+
 
 production:
   <<: *default
   database: meet_in_africa_production
+  username: rails
+  password:
