@@ -1,0 +1,67 @@
+
+<section>
+  <!--Swiper-->
+  <div data-height="" data-min-height="600px" class="swiper-container swiper-slider">
+    <div class="swiper-wrapper">
+      <% @swiper.each do |facility| %>
+          <div data-slide-bg="http://wamiori.com/meet/images/slide-2.jpg" class="swiper-slide">
+            <div class="swiper-slide-caption">
+              <div class="container">
+                <p data-caption-animate="fadeInDown" class="h1"><%= facility.hotel.name %> - <%=   facility.name  %></p>
+                <p data-caption-animate="fadeInUp" data-caption-delay="400" class="h5" style="padding-right: 500px;"><%= facility.description %></p>
+                <div data-caption-animate="fadeInUp" data-caption-delay="400" class="price"><%= number_to_currency(facility.price, :unit => "Kes") %><span>/day</span></div>
+                <a href="property-catalog-single.html" data-caption-animate="fadeInUp" data-caption-delay="400" class="btn btn-sm btn-transparent">book now</a> </div>
+            </div>
+          </div>
+      <% end %>
+
+    </div>
+    <!-- Swiper Pagination-->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+<!-- Section Search -->
+<section class="section-sm section-sm-mod-1 bg-dark">
+  <div class="container position-margin-top undefined">
+    <div class="search-form-wrap bg-white container-shadow">
+      <h3>Search Conference Facilities</h3>
+      <%= form_tag(controller: "facilities", action: "filter") do %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-4">
+              <label for="">County</label>
+              <%= text_field_tag :county, @params %>
+            </div>
+            <div class="col-sm-4">
+              <label for="">Area</label>
+                <%= text_field_tag :area %>
+            </div>
+            <div class="col-sm-4">
+              <label>Max Price</label>
+              <%= number_field_tag :range_2 %>
+            </div>
+          </div>
+        </div>
+        <div class="form-group width-2">
+          <div class="row">
+            <div class="col-sm-4">
+              <label for="">Hotel</label>
+              <%= select_tag :hotel, options_for_select(["Select Hotel"].push(Hotel.distinct.pluck(:name))) %>
+            </div>
+            <div class="col-sm-4">
+              <label for="">Layout</label>
+                <%= select_tag :layout, options_for_select(["Select Layout"].concat(@facility_layouts), :select) %>
+            </div>
+            <div class="col-sm-4">
+              <label>Min Price</label>
+              <%= number_field_tag :range_1 %>
+            </div>
+          </div>
+        </div>
+        <%= submit_tag("Search") %>
+
+      <% end %>
+    </div>
+  </div>
+</section>
+<!--Section Categories-->

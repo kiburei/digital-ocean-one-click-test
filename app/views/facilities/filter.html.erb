@@ -1,0 +1,107 @@
+<div class="search-form-wrap bg-white container-shadow">
+  <h3>Filter results</h3>
+  <%= form_tag(controller: "facilities", action: "filter") do %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-3">
+          <label for="">Layout</label>
+            <%= select_tag :layout, options_for_select(["Select Layout"].concat(@facility_layouts), :select) %>
+        </div>
+        <div class="col-sm-3">
+          <label>Max Price</label>
+          <%= number_field_tag :range_2 %>
+        </div>
+    <div class="form-group width-2">
+        <div class="col-sm-3">
+          <label for="select-8">No of People</label>
+          <%= number_field_tag :capacity %>
+        </div>
+        <div class="col-sm-3">
+          <label>Min Price</label>
+          <%= number_field_tag :range_1 %>
+        </div>
+      </div>
+    </div>
+    </div>
+    <%= submit_tag("Search") %>
+
+  <% end %>
+</div>
+
+
+<h4><%= @filtered.count %> results matched your search</h4>
+<% if @filtered.count > 0 %>
+  <div class="row clearleft-custom">
+    <% @filtered.each do |facility| %>
+      <div class="col-xs-12 col-md-7">
+        <div class="thumbnail"><a href="/facilities/<%= facility.id %>" class="img-link card-image"><%= image_tag Photo.find(facility.photos.ids.sample).image.url %><span class="thumbnail-price"><%= number_to_currency(facility.price, :unit => "Kes") %>/<span class="mon">day</span></span></a>
+          <div class="caption">
+            <h4><a href="/facilities/<%= facility.id %>"><%= facility.name %> in <%= link_to facility.hotel.name, hotel_path(facility.hotel) %></a></h4>
+            <% i = 0 %>
+              <% facility.facility_layouts.split(" ").length.times do |orientation| %>
+                <div class="col-md-6" style="font-size: 15px;">
+                  <span class="icon icon-sm icon-darker hotel-icon-10"></span><%= facility.facility_layouts.split(" ")[i] %> - <%= facility.capacity.split(" ")[i] %>
+                </div>
+                <% i += 1 %>
+              <% end %></br>
+            <p><%= facility.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="catalog-sidebar range">
+      <!-- Google Maps -->
+        <div class="sidebar-module cell-sm-3 cell-md-12 cell-md-push-2">
+        <style>
+           #map {
+            height: 400px;
+            width: 100%;
+           }
+        </style>
+        <h3>My Google Maps Demo</h3>
+        <div id="map"></div>
+        <script>
+
+          function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 13,
+              center: {lat: -1.2857613, lng: 36.817449}
+            });
+
+            // Create an array of alphabetical characters used to label the markers.
+            var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+            // Add some markers to the map.
+            // Note: The code uses the JavaScript Array.prototype.map() method to
+            // create an array of markers based on a given "locations" array.
+            // The map() method here has nothing to do with the Google Maps API.
+            var markers = locations.map(function(location, i) {
+              return new google.maps.Marker({
+                position: location,
+                label: labels[i % labels.length]
+              });
+            });
+
+            // Add a marker clusterer to manage the markers.
+            var markerCluster = new MarkerClusterer(map, markers,
+                {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+          }
+          var locations = []
+          <% @filtered.each do |facility| %>
+            locations.push({lat: <%= facility.hotel.latitude %>, lng: <%= facility.hotel.longitude %>})
+          <% end %>
+        </script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+           </script>
+           <script async defer
+           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsDME8YAmMgpXL0kjY7ssv3wSi1vzNNFo&callback=initMap">
+           </script>
+
+
+        </div>
+    </div>
+  </div>
+
+<% else %>
+  <p>Sorry no results found</p>
+<% end %>

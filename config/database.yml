@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -11,12 +12,34 @@ default: &default
 development:
   <<: *default
   database: rails_project_development
+=======
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: rails
+  password:
+
+development:
+  <<: *default
+  database: meet_in_africa_development
+  username: rails
+  password:
+
+>>>>>>> 579008f5a1fa7d91706bb5a73fe21633a4510a94
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+<<<<<<< HEAD
   database: rails_project_test
 
 production:
@@ -24,3 +47,15 @@ production:
   database: rails_project_production
   username: rails
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+=======
+  database: meet_in_africa_test
+  username: rails
+  password:
+
+
+production:
+  <<: *default
+  database: meet_in_africa_production
+  username: rails
+  password:
+>>>>>>> 579008f5a1fa7d91706bb5a73fe21633a4510a94

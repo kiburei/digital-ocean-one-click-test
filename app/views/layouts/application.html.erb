@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
     <title>RailsProject</title>
     <%= csrf_meta_tags %>
 
@@ -11,4 +12,95 @@
   <body>
     <%= yield %>
   </body>
+=======
+    <title>Meet in Africa</title>
+    <%= csrf_meta_tags %>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+    <%= favicon_link_tag 'favicon.ico' %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload', :recursive => true %>
+    <%= stylesheet_link_tag    'static', media: 'all', 'data-turbolinks-track': 'reload', :recursive => true %>
+    <%= stylesheet_link_tag    'style', media: 'all', 'data-turbolinks-track': 'reload', :recursive => true %>
+
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,700%7CMontserrat:400,700">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :recursive => true  %>
+    <%= javascript_include_tag 'cable', 'data-turbolinks-track': 'reload', :recursive => true  %>
+    <%= javascript_include_tag 'html5shiv.min', 'data-turbolinks-track': 'reload', :recursive => true  %>
+    <%= javascript_include_tag 'pointer-events.min', 'data-turbolinks-track': 'reload', :recursive => true  %>
+
+
+    <!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/">
+      <%= image_tag "warning_bar_0000_us.jpg", size: "42x820", alt: "Please Update your browser"%></a></div>
+    <![endif]-->
+
+  <div class="rd-navbar-wrap header_corporate">
+      <nav class="rd-navbar" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fullwidth" data-md-layout="rd-navbar-fullwidth" data-lg-layout="rd-navbar-fullwidth" data-device-layout="rd-navbar-fixed" data-sm-device-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fullwidth" data-stick-up-offset="100px">
+        <div class="rd-navbar-inner inner-wrap">
+          <div class="rd-navbar-panel">
+            <!-- RD Navbar Toggle-->
+            <button data-rd-navbar-toggle=".rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
+            <!-- RD Navbar Brand-->
+            <div class="rd-navbar-brand"><a href="/" class="brand-name"><%= image_tag "meet-in-africa-logo.png" %></a></div>
+          </div>
+          <div class="btn-group">
+            <% if user_signed_in? %>
+              <%= link_to "Log Out", destroy_hotel_session_path, :method => :delete, class: "btn btn-sm btn-primary" %>
+              <% if current_user.bookings.any? %>
+                <%= link_to "You have #{current_user.bookings.count} bookings", user_bookings_path, class: "btn btn-sm btn-primary" %>
+              <% end %>
+            <% else %>
+            <% if hotel_signed_in? == false %>
+              <%= link_to "Log In", new_user_session_path, class: "btn btn-sm btn-primary" %>
+              <%= link_to "Your Hotel", new_hotel_session_path, class: "btn btn-sm btn-primary" %>
+            <% end %>
+            <% end %>
+            <% if hotel_signed_in? %>
+              <%= link_to "Add Facility", new_facility_path, class: "btn btn-sm btn-primary" %>
+              <%= link_to "My Hotel", hotel_path(current_hotel), class: "btn btn-sm btn-primary" %>
+              <%= link_to "Log Out", destroy_hotel_session_path, :method => :delete, class: "btn btn-sm btn-primary" %>
+            <% end %>
+          </div>
+
+        </div>
+      </nav>
+    </div>
+  <body>
+    <%= yield %>
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+        toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+      </script>
+    <% end %>
+    <%= javascript_include_tag 'script', 'data-turbolinks-track': 'reload', :recursive => true  %>
+    <%= javascript_include_tag 'core.min', 'data-turbolinks-track': 'reload', :recursive => true  %>
+  </body>
+  <footer class="page-foot text-center text-md-left bg-gray">
+    <div class="container-fluid">
+      <div class="footer-wrap">
+        <div class="rd-navbar-brand"><a href="/" class="brand-name">Meet in<br><span>Africa</span></a></div>
+        <ul class="list-inline">
+          <li><a href="#" class="fa-facebook"></a></li>
+          <li><a href="#" class="fa-twitter"></a></li>
+          <li><a href="#" class="fa-pinterest-p"></a></li>
+          <li><a href="#" class="fa-vimeo"></a></li>
+          <li><a href="#" class="fa-google"></a></li>
+          <li><a href="#" class="fa-rss"></a></li>
+        </ul>
+        <div class="copyright">
+          <p>&#169;<span id="copyright-year"></span> All Rights Reserved <a href="terms.html">Terms of Use and Privacy Policy</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+>>>>>>> 579008f5a1fa7d91706bb5a73fe21633a4510a94
 </html>

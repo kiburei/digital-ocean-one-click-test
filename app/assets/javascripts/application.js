@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+<<<<<<< HEAD
+=======
+//= require toastr
+//= require social-share-button
+//= require social-share-button
+>>>>>>> 579008f5a1fa7d91706bb5a73fe21633a4510a94
