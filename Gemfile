@@ -4,10 +4,10 @@ gem 'thin'
 # Share on Social Media
 gem 'social-share-button'
 # Admin Dashboard and support
-gem 'activeadmin'
-gem 'cancan' # or cancancan
-gem 'draper'
-gem 'pundit'
+# gem 'activeadmin'
+# gem 'cancan' # or cancancan
+# gem 'draper'
+# gem 'pundit'
 # deploy to heroku
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
